@@ -1,0 +1,22 @@
+# Route naming
+
+## Status
+
+- 20230516: accepted
+
+## Context
+
+The need of consistency and readiness.
+
+## Decision
+
+Routes should be named as: `{app_name}_{entity_path}_{action}`
+
+- app_name: featflip
+- entity_path: things such as "organization", "organization_team" or "organization_project"
+- action:
+    - to be filled.
+
+## Consequences
+
+N/A

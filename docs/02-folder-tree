@@ -1,0 +1,40 @@
+# Folder tree
+
+## Status
+
+- 20230516: accepted
+
+## Context
+
+The need to understand what we do more efficiently than a classic symfony structure
+
+## Decision
+
+    UseCases # features exposed to end user UseCase/Request/Response
+    Domain # business rules/model
+        Entity
+        Service
+        ValueObject
+        ...
+    Presentation # only things to prepare end user interaction
+        Web
+            ViewModel
+            Presenter
+        REST
+            Resources
+            Presenter
+        Console
+            Presenter
+            ViewModel
+        Bus
+            Event
+            Resource
+            Rpc
+            Presenter
+        ...
+    Infrastructure # concrete implementation of domain/use cases/presentation interfaces, frameworks
+        Symfony
+
+## Consequences
+
+N/A

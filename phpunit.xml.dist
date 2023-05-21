@@ -21,6 +21,11 @@
         <extension class="Symfony\Component\Panther\ServerExtension" />
     </extensions>
     -->
+    <extensions>
+      <bootstrap class="App\Tests\PHPUnit\Extension\Extension">
+        <parameter name="mode" value="schema" />
+      </bootstrap>
+    </extensions>
   <source>
     <include>
       <directory suffix=".php">src</directory>
