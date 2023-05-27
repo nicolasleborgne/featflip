@@ -6,5 +6,8 @@ namespace App\UseCases\CreateOrganization;
 
 final class CreateOrganizationRequest
 {
-
+    public function __construct(
+        public readonly string $name,
+    ) {
+    }
 }

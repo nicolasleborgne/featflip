@@ -1,0 +1,6 @@
+services:
+
+  App\Domain\Organization\OrganizationRepositoryInterface: '@App\Infrastructure\Symfony\Repository\InMemoryOrganizationRepository'
+
+  App\Infrastructure\Symfony\Repository\InMemoryOrganizationRepository:
+    public: true

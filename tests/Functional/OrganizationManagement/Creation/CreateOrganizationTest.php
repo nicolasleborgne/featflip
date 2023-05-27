@@ -2,24 +2,37 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Functionnal\OrganizationManagement\Creation;
+namespace App\Tests\Functional\OrganizationManagement\Creation;
 
+use App\Infrastructure\Symfony\Repository\InMemoryOrganizationRepository;
+use App\Tests\Functional\FunctionalTestCase;
 use PHPUnit\Framework\Attributes\Test;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use function App\Tests\Functionnal\OrganizationManagement\createOrganizationPage;
 
-final class CreateOrganizationTest extends KernelTestCase
+final class CreateOrganizationTest extends FunctionalTestCase
 {
     #[Test]
     public function can_create_an_organization(): void
     {
-        createOrganizationPage()->submit();
+        createOrganizationPage()->submit(withName: 'Featswitches &co');
 
-        self::assertOrganizationExists();
+        self::assertOrganizationExists(withName: 'Featswitches &co');
     }
 
-    private static function assertOrganizationExists()
+    private static function assertOrganizationExists(?string $withName = null): void
     {
+        $repository = self::getContainer()->get(InMemoryOrganizationRepository::class);
+        $organizations = $repository->all();
 
+        self::assertNotEmpty($organizations, 'Failed asserting organization exists');
+
+        foreach ($organizations as $organization) {
+            if (null !== $withName) {
+                self::assertEquals(
+                    $withName,
+                    $organization->name(),
+                    sprintf('Failed asserting organization has name %s', $withName)
+                );
+            }
+        }
     }
 }

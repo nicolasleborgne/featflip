@@ -2,17 +2,33 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Functionnal\OrganizationManagement\Creation;
+namespace App\Tests\Functional\OrganizationManagement\Creation;
 
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use App\Tests\Functional\AbstractPageObject;
+use Symfony\Component\DomCrawler\Crawler;
 
-final class CreateOrganizationPage
+final class CreateOrganizationPage extends AbstractPageObject
 {
-    private const FORM_SELECTOR = '#create-organization-form';
-    private static KernelTestCase $testCase;
+    private const FORM_SELECTOR = '#create_organization_request_add';
+    private const ROUTE = 'app_organization_create';
 
-    public function submit()
+    public function visit(): Crawler
     {
-        self::$testCase-
+        return self::$testCase->get(self::ROUTE);
     }
+
+    public function submit(string $withName): void
+    {
+        $crawler = $this->visit();
+        $form = $crawler->filter(self::FORM_SELECTOR)->form();
+
+        self::$testCase::$client->submit($form, [
+            'create_organization_request[name]' => $withName,
+        ]);
+    }
+}
+
+function createOrganizationPage(): CreateOrganizationPage
+{
+    return new CreateOrganizationPage();
 }
