@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: nicolbrgn/php:8.1
+    env:
+      FORCE_COLOR: 1
+    steps:
+      - uses: actions/checkout@v3
+      - name: Cache composer
+        uses: actions/cache@v3
+        with:
+          path: build/cache
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+      - name: Cache tox
+        uses: actions/cache@v3
+        with:
+          path: .tox
+          key: ${{ runner.os }}-tox-${{ hashFiles('**/tox.ini') }}
+          restore-keys: |
+            ${{ runner.os }}-tox-
+      - name: Run build
+        run: earthly --allow-privileged --output --ci +all
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v3
+        with:
+          name: Code coverage report
+          path: build/coverage
+      - name: Archive docs
+        uses: actions/upload-artifact@v3
+        with:
+          name: Documentation
+          path: build/docs
+      - name: Publish test report
+        uses: mikepenz/action-junit-report@v3
+        if: success() || failure() # always run even if the previous step fails
+        with:
+          report_paths: 'build/testreport.xml'

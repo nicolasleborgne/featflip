@@ -6,7 +6,7 @@ deps:
     ENV XDG_CACHE_HOME=/code/build/cache
     COPY --dir --if-exists ./build/cache /code/build/cache
     COPY composer.* .
-    RUN --ssh composer install --no-scripts
+    RUN composer install --no-scripts
     COPY --dir . .
     SAVE ARTIFACT ./build/cache AS LOCAL ./build/cache
 
@@ -25,10 +25,15 @@ test:
     SAVE ARTIFACT ./build/testreport.xml AS LOCAL ./build/testreport.xml
 
 docs:
+    COPY --dir --if-exists .tox .
+    COPY tox.ini .
+    COPY mkdocs.yml .
+    COPY --dir docs .
     RUN tox -e mkdocs
-    SAVE ARTIFACT ./site AS LOCAL ./site
-
+    SAVE ARTIFACT .tox AS LOCAL .tox
+    SAVE ARTIFACT ./build/docs AS LOCAL ./build/docs
 all:
+    BUILD +deps
     BUILD +lint
     BUILD +test
     BUILD +docs
