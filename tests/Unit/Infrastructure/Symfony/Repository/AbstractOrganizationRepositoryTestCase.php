@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Infrastructure\Symfony\Repository;
 
-use App\Domain\Organization\Organization;
 use App\Domain\Organization\OrganizationId;
 use App\Domain\Organization\OrganizationRepositoryInterface;
 use PHPUnit\Framework\Attributes\Test;
@@ -41,9 +40,4 @@ abstract class AbstractOrganizationRepositoryTestCase extends KernelTestCase
         self::assertContains($anOrganization, $actualOrganizations);
         self::assertContains($anotherOrganization, $actualOrganizations);
     }
-}
-
-function anOrganization(): Organization
-{
-    return new Organization('feat flip');
 }

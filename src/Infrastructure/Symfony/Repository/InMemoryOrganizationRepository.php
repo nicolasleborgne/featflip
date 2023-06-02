@@ -8,7 +8,7 @@ use App\Domain\Organization\OrganizationRepositoryInterface;
 
 final class InMemoryOrganizationRepository implements OrganizationRepositoryInterface
 {
-    private $organizations = [];
+    private array $organizations = [];
 
     public function get($organizationId)
     {

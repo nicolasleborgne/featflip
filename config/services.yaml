@@ -27,4 +27,11 @@ services:
     App\Infrastructure\Symfony\Repository\DoctrineOrganizationRepository:
         public: true
 
+    App\Domain\Project\ProjectRepositoryInterface: '@App\Infrastructure\Symfony\Repository\InMemoryProjectRepository'
+    App\Infrastructure\Symfony\Repository\DoctrineProjectRepository:
+        public: true
+
+
     App\UseCases\CreateOrganization\CreateOrganizationUseCase: ~
+
+    App\UseCases\CreateProject\CreateProjectUseCase: ~

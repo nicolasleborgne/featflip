@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Organization;
+namespace App\Domain\Project;
 
 use App\Domain\Common\IdGenerator;
 
-final class OrganizationId implements \Stringable
+final class ProjectId implements \Stringable
 {
-    public static function generate(): OrganizationId
+    public static function generate(): ProjectId
     {
         return new self(IdGenerator::generate());
     }

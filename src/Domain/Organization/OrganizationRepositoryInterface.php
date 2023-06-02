@@ -11,9 +11,4 @@ use App\Domain\Common\RepositoryInterface;
  */
 interface OrganizationRepositoryInterface extends RepositoryInterface
 {
-    public function get($objectId);
-
-    public function add($object): void;
-
-    public function all(): array;
 }

@@ -3,6 +3,7 @@ doctrine:
         url: '%env(resolve:DATABASE_URL)%'
         types:
             organization_id: App\Infrastructure\Doctrine\DBAL\Types\OrganizationIdType
+            project_id: App\Infrastructure\Doctrine\DBAL\Types\ProjectIdType
 
         # IMPORTANT: You MUST configure your server version,
         # either here or in the DATABASE_URL env var (see .env file)
@@ -15,10 +16,16 @@ doctrine:
         mappings:
             App\Domain\Organization:
                 type: xml
-                dir: '%kernel.project_dir%/config/doctrine'
+                dir: '%kernel.project_dir%/config/doctrine/Organization'
                 is_bundle: false
                 prefix: App\Domain\Organization
                 alias: Organization
+            App\Domain\Project:
+                type: xml
+                dir: '%kernel.project_dir%/config/doctrine/Project'
+                is_bundle: false
+                prefix: App\Domain\Project
+                alias: Project
 
 when@test:
     doctrine:

@@ -16,7 +16,7 @@ final class SetupDatabase implements Event\Application\StartedSubscriber
 
     public function notify(Event\Application\Started $event): void
     {
-        $process = new Process(['./bin/console', 'doctrine:database:drop', '--if-exists']);
+        $process = new Process(['./bin/console', 'doctrine:database:drop', '--if-exists', '--force']);
         $process->run();
 
         $process = new Process(['./bin/console', 'doctrine:database:create', '--if-not-exists']);

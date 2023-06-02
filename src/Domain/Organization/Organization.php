@@ -9,11 +9,15 @@ final class Organization
     private readonly OrganizationId $id;
     private string $name;
 
+    private string $slug;
+
     public function __construct(
         string $name,
+        string $slug,
     ) {
         $this->id = OrganizationId::generate();
         $this->name = $name;
+        $this->slug = $slug;
     }
 
     public function id(): OrganizationId
@@ -24,5 +28,10 @@ final class Organization
     public function name(): string
     {
         return $this->name;
+    }
+
+    public function slug(): string
+    {
+        return $this->slug;
     }
 }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Functional;
 
 use App\Tests\Functional\OrganizationManagement\Creation\CreateOrganizationPage;
+use App\Tests\Functional\ProjectManagement\Creation\CreateProjectPage;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
@@ -17,6 +18,7 @@ class FunctionalTestCase extends WebTestCase
 
     private const Pages = [
         CreateOrganizationPage::class,
+        CreateProjectPage::class,
     ];
 
     private UrlGeneratorInterface $router;
@@ -33,9 +35,9 @@ class FunctionalTestCase extends WebTestCase
         $this->loadPages();
     }
 
-    public function get(string $routeName): Crawler
+    public function get(string $routeName, array $parameters = []): Crawler
     {
-        $url = $this->router->generate($routeName);
+        $url = $this->router->generate($routeName, $parameters);
 
         return self::$client->request(Request::METHOD_GET, $url);
     }
