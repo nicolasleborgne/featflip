@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional;
 
+use App\Tests\Assertions\Assert;
 use App\Tests\Functional\OrganizationManagement\Creation\CreateOrganizationPage;
 use App\Tests\Functional\ProjectManagement\Creation\CreateProjectPage;
+use Psr\Container\ContainerInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
@@ -21,6 +23,7 @@ class FunctionalTestCase extends WebTestCase
         CreateProjectPage::class,
     ];
 
+    private ContainerInterface $container;
     private UrlGeneratorInterface $router;
 
     protected function setUp(): void
@@ -29,10 +32,13 @@ class FunctionalTestCase extends WebTestCase
 
         self::ensureKernelShutdown();
         self::$client = self::createClient();
+        self::$client->disableReboot();
+        $this->container = self::getContainer();
         /** @var UrlGeneratorInterface $router */
-        $router = self::getContainer()->get(UrlGeneratorInterface::class);
+        $router = $this->container->get(UrlGeneratorInterface::class);
         $this->router = $router;
         $this->loadPages();
+        Assert::$testCase = $this;
     }
 
     public function get(string $routeName, array $parameters = []): Crawler
@@ -40,6 +46,11 @@ class FunctionalTestCase extends WebTestCase
         $url = $this->router->generate($routeName, $parameters);
 
         return self::$client->request(Request::METHOD_GET, $url);
+    }
+
+    public function container(): ContainerInterface
+    {
+        return $this->container;
     }
 
     private function loadPages(): void

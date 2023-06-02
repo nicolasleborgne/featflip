@@ -18,9 +18,9 @@ final class CreateProjectPage extends AbstractPageObject
         return self::$testCase->get(self::ROUTE, ['slug' => $forOrganization->slug()]);
     }
 
-    public function submit(Organization $forOrganization, string $withName): void
+    public function submit(Organization $withOrganization, string $withName): void
     {
-        $crawler = $this->visit($forOrganization);
+        $crawler = $this->visit($withOrganization);
 
         $form = $crawler->filter(self::FORM_SELECTOR)->form();
 

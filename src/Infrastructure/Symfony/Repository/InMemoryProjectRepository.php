@@ -12,8 +12,10 @@ final class InMemoryProjectRepository implements ProjectRepositoryInterface
 
     public function get($projectId)
     {
-        if (isset($this->projects[(string) $projectId])) {
-            return $this->projects[(string) $projectId];
+        foreach ($this->projects as $project) {
+            if ($project->id() === $projectId) {
+                return $project;
+            }
         }
 
         return null;
@@ -21,7 +23,14 @@ final class InMemoryProjectRepository implements ProjectRepositoryInterface
 
     public function add($object): void
     {
-        $this->projects[(string) $object->id()] = $object;
+        $key = array_search($object, $this->projects, true);
+        if (false === $key) {
+            $this->projects[] = $object;
+
+            return;
+        }
+
+        $this->projects[$key] = $object;
     }
 
     public function all(): array

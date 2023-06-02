@@ -27,6 +27,7 @@
       <bootstrap class="App\Tests\PHPUnit\Extension\Extension">
         <parameter name="mode" value="schema" />
       </bootstrap>
+      <bootstrap class="DAMA\DoctrineTestBundle\PHPUnit\PHPUnitExtension" />
     </extensions>
   <source>
     <include>

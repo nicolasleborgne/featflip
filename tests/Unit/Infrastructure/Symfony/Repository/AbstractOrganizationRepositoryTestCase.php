@@ -23,6 +23,16 @@ abstract class AbstractOrganizationRepositoryTestCase extends KernelTestCase
     }
 
     #[Test]
+    public function it_add_already_existing(): void
+    {
+        $anOrganization = anOrganization();
+        $this->repository->add($anOrganization);
+        $this->repository->add($anOrganization);
+
+        self::assertCount(1, $this->repository->all());
+    }
+
+    #[Test]
     public function it_return_null_when_getting_unknown(): void
     {
         self::assertNull($this->repository->get(OrganizationId::generate()));

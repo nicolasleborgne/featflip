@@ -12,8 +12,10 @@ final class InMemoryOrganizationRepository implements OrganizationRepositoryInte
 
     public function get($organizationId)
     {
-        if (isset($this->organizations[(string) $organizationId])) {
-            return $this->organizations[(string) $organizationId];
+        foreach ($this->organizations as $organization) {
+            if ($organization->id() === $organizationId) {
+                return $organization;
+            }
         }
 
         return null;
@@ -21,7 +23,14 @@ final class InMemoryOrganizationRepository implements OrganizationRepositoryInte
 
     public function add($object): void
     {
-        $this->organizations[(string) $object->id()] = $object;
+        $key = array_search($object, $this->organizations, true);
+        if (false === $key) {
+            $this->organizations[] = $object;
+
+            return;
+        }
+
+        $this->organizations[$key] = $object;
     }
 
     public function all(): array
