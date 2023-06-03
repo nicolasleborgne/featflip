@@ -28,6 +28,8 @@ final class CreateProjectTest extends FunctionalTestCase
 
         $project = $this->repository->all()[0];
         Assert::thatProject($project)
-            ->hasName('Featswitches');
+            ->hasName('Featswitches')
+            ->hasSlug('featswitches')
+        ;
     }
 }

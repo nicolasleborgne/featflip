@@ -10,5 +10,5 @@ function anOrganization(): Organization
 
 function aProject(): Project
 {
-    return new Project('Some project name');
+    return new Project('Some project name', 'some-project-name');
 }

@@ -23,4 +23,15 @@ final class AssertProject extends Assert
 
         return $this;
     }
+
+    public function hasSlug(string $slug): self
+    {
+        parent::$testCase::assertEquals(
+            $slug,
+            $this->project->slug(),
+            sprintf('Failed asserting that project has slug %s.', $slug)
+        );
+
+        return $this;
+    }
 }
