@@ -12,16 +12,13 @@ abstract class Assert
 {
     public static TestCase $testCase;
 
-    public static function that(object $object): Assert
+    public static function thatOrganization(Organization $organization): AssertOrganization
     {
-        if ($object instanceof Project) {
-            return new AssertProject($object);
-        }
+        return new AssertOrganization($organization);
+    }
 
-        if ($object instanceof Organization) {
-            return new AssertOrganization($object);
-        }
-
-        throw new \Exception('Should not be reached.');
+    public static function thatProject(Project $project): AssertProject
+    {
+        return new AssertProject($project);
     }
 }

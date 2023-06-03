@@ -27,7 +27,7 @@ final class CreateProjectTest extends FunctionalTestCase
         createProjectPage()->submit(withOrganization: $organization, withName: 'Featswitches');
 
         $project = $this->repository->all()[0];
-        Assert::that($project)
+        Assert::thatProject($project)
             ->hasName('Featswitches');
     }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\OrganizationManagement\Creation;
 
+use App\Domain\Organization\Organization;
 use App\Domain\Organization\OrganizationRepositoryInterface;
 use App\Infrastructure\Symfony\Repository\InMemoryOrganizationRepository;
 use App\Tests\Assertions\Assert;
@@ -25,8 +26,9 @@ final class CreateOrganizationTest extends FunctionalTestCase
     {
         createOrganizationPage()->submit(withName: 'Featswitches &co');
 
+        /** @var Organization $organization */
         $organization = $this->repository->all()[0];
-        Assert::that($organization)
+        Assert::thatOrganization($organization)
             ->hasName('Featswitches &co')
             ->hasSlug('featswitches-co');
     }
