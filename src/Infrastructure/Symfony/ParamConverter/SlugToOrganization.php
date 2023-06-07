@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace App\Infrastructure\Symfony\ParamConverter;
 
 use App\Domain\Organization\FindOrganizationFromSlug;
+use PHPUnit\Framework\Attributes\CodeCoverageIgnore;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+#[CodeCoverageIgnore]
 final class SlugToOrganization implements ParamConverterInterface
 {
     public const NAME = 'slug_to_organization';

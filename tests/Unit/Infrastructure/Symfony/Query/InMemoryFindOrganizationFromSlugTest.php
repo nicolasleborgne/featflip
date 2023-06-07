@@ -6,7 +6,7 @@ namespace App\Tests\Unit\Infrastructure\Symfony\Query;
 
 use App\Infrastructure\Symfony\Query\InMemoryFindOrganizationFromSlug;
 
-final class InMemoryFindOrganizationFromSlugTestCase extends AbstractFindOrganizationFromSlugTestCase
+final class InMemoryFindOrganizationFromSlugTest extends AbstractFindOrganizationFromSlugTestCaseCase
 {
     protected function setUp(): void
     {

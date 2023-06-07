@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Infrastructure\Symfony\Query;
 
 use App\Domain\Organization\FindOrganizationFromSlug;
-use App\Tests\Unit\UnitTest;
+use App\Tests\Unit\UnitTestCase;
 use PHPUnit\Framework\Attributes\Test;
 
-abstract class AbstractFindOrganizationFromSlugTestCase extends UnitTest
+abstract class AbstractFindOrganizationFromSlugTestCaseCase extends UnitTestCase
 {
     protected FindOrganizationFromSlug $query;
 

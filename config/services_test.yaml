@@ -2,10 +2,6 @@ services:
 
   App\Domain\Organization\OrganizationRepositoryInterface: '@App\Infrastructure\Symfony\Repository\InMemoryOrganizationRepository'
 
-  App\Infrastructure\Symfony\Repository\InMemoryOrganizationRepository:
-    public: true
-
   App\Domain\Project\ProjectRepositoryInterface: '@App\Infrastructure\Symfony\Repository\InMemoryProjectRepository'
 
-  App\Infrastructure\Symfony\Repository\InMemoryProjectRepository:
-    public: true
+  App\Domain\Organization\FindOrganizationFromSlug: '@App\Infrastructure\Symfony\Query\InMemoryFindOrganizationFromSlug'

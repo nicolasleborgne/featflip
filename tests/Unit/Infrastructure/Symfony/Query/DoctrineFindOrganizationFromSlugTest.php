@@ -6,7 +6,7 @@ namespace App\Tests\Unit\Infrastructure\Symfony\Query;
 
 use App\Infrastructure\Symfony\Query\DoctrineFindOrganizationFromSlug;
 
-final class DoctrineFindOrganizationFromSlugTest extends AbstractFindOrganizationFromSlugTestCase
+final class DoctrineFindOrganizationFromSlugTest extends AbstractFindOrganizationFromSlugTestCaseCase
 {
     protected function setUp(): void
     {

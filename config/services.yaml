@@ -31,7 +31,7 @@ services:
     App\Infrastructure\Symfony\Repository\DoctrineProjectRepository:
         public: true
 
-    App\Domain\Organization\FindOrganizationFromSlug: '@App\Infrastructure\Symfony\Query\InMemoryFindOrganizationFromSlug'
+    App\Domain\Organization\FindOrganizationFromSlug: '@App\Infrastructure\Symfony\Query\DoctrineFindOrganizationFromSlug'
     App\Infrastructure\Symfony\Query\InMemoryFindOrganizationFromSlug:
         public: true
     App\Infrastructure\Symfony\Query\DoctrineFindOrganizationFromSlug:

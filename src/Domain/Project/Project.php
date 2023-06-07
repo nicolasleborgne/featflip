@@ -6,7 +6,7 @@ namespace App\Domain\Project;
 
 use App\Domain\Organization\OrganizationId;
 
-final class Project implements \Stringable
+final class Project
 {
     private readonly ProjectId $id;
     private string $name;
@@ -43,10 +43,5 @@ final class Project implements \Stringable
     public function organizationId(): OrganizationId
     {
         return $this->organizationId;
-    }
-
-    public function __toString(): string
-    {
-        return sprintf('%s{%s}', self::class, $this->id);
     }
 }

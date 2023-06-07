@@ -9,7 +9,7 @@ use App\Tests\ContainerAwareTestCaseTrait;
 use App\Tests\Fixtures\Builder\Builder;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-class UnitTest extends KernelTestCase implements ContainerAwareTestCaseInterface
+class UnitTestCase extends KernelTestCase implements ContainerAwareTestCaseInterface
 {
     use ContainerAwareTestCaseTrait;
 

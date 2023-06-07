@@ -6,7 +6,7 @@ namespace App\Tests\Unit\Infrastructure\Symfony\Repository;
 
 use App\Infrastructure\Symfony\Repository\DoctrineProjectRepository;
 
-final class DoctrineProjectRepositoryTest extends AbstractProjectRepositoryTestCase
+final class DoctrineProjectRepositoryTest extends AbstractProjectRepositoryTestCaseCase
 {
     protected function setUp(): void
     {

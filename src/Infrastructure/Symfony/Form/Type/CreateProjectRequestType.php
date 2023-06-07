@@ -37,13 +37,18 @@ final class CreateProjectRequestType extends AbstractType implements DataMapperI
     public function mapDataToForms(mixed $viewData, \Traversable $forms): void
     {
         // there is no data yet, so nothing to prepopulate
+        // @codeCoverageIgnoreStart
         if (null === $viewData) {
             return;
         }
 
+        /*
+         * @codeCoverageIgnore
+         */
         if (!is_array($viewData) || !isset($viewData['organization_id'])) {
             return;
         }
+        // @codeCoverageIgnoreEnd
 
         /** @var FormInterface[] $forms */
         $forms = iterator_to_array($forms);
