@@ -6,10 +6,10 @@ namespace App\Tests\Unit\Infrastructure\Symfony\Repository;
 
 use App\Domain\Project\ProjectId;
 use App\Domain\Project\ProjectRepositoryInterface;
+use App\Tests\Unit\UnitTest;
 use PHPUnit\Framework\Attributes\Test;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-abstract class AbstractProjectRepositoryTestCase extends KernelTestCase
+abstract class AbstractProjectRepositoryTestCase extends UnitTest
 {
     protected ProjectRepositoryInterface $repository;
 

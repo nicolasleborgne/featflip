@@ -31,7 +31,16 @@ services:
     App\Infrastructure\Symfony\Repository\DoctrineProjectRepository:
         public: true
 
+    App\Domain\Organization\FindOrganizationFromSlug: '@App\Infrastructure\Symfony\Query\InMemoryFindOrganizationFromSlug'
+    App\Infrastructure\Symfony\Query\InMemoryFindOrganizationFromSlug:
+        public: true
+    App\Infrastructure\Symfony\Query\DoctrineFindOrganizationFromSlug:
+        public: true
 
     App\UseCases\CreateOrganization\CreateOrganizationUseCase: ~
 
     App\UseCases\CreateProject\CreateProjectUseCase: ~
+
+    App\Infrastructure\Symfony\ParamConverter\SlugToOrganization:
+        tags:
+            - { name: request.param_converter, converter: 'slug_to_organization' }

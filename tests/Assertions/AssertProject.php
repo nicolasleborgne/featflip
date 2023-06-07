@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Assertions;
 
+use App\Domain\Organization\Organization;
 use App\Domain\Project\Project;
 
 final class AssertProject extends Assert
@@ -33,5 +34,14 @@ final class AssertProject extends Assert
         );
 
         return $this;
+    }
+
+    public function hasOrganization(Organization $organization)
+    {
+        parent::$testCase::assertEquals(
+            $organization->id(),
+            $this->project->organizationId(),
+            sprintf('Failed asserting that project has organization %s.', $organization),
+        );
     }
 }

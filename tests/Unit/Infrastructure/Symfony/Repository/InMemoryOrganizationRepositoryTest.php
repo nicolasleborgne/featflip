@@ -10,6 +10,7 @@ final class InMemoryOrganizationRepositoryTest extends AbstractOrganizationRepos
 {
     protected function setUp(): void
     {
+        parent::setUp();
         $this->repository = new InMemoryOrganizationRepository();
     }
 }

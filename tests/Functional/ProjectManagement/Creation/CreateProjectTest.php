@@ -30,6 +30,7 @@ final class CreateProjectTest extends FunctionalTestCase
         Assert::thatProject($project)
             ->hasName('Featswitches')
             ->hasSlug('featswitches')
+            ->hasOrganization($organization)
         ;
     }
 }

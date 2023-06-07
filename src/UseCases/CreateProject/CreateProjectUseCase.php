@@ -21,6 +21,7 @@ final class CreateProjectUseCase
         $this->repository->add(new Project(
             $request->name,
             $slug,
+            $request->organizationId,
         ));
     }
 }

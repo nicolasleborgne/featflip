@@ -13,6 +13,11 @@ final class OrganizationId implements \Stringable
         return new self(IdGenerator::generate());
     }
 
+    public static function fromString(string $value): OrganizationId
+    {
+        return new self($value);
+    }
+
     public function __construct(
         private readonly string $value
     ) {

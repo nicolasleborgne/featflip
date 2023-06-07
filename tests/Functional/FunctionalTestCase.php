@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace App\Tests\Functional;
 
 use App\Tests\Assertions\Assert;
+use App\Tests\ContainerAwareTestCaseInterface;
+use App\Tests\ContainerAwareTestCaseTrait;
+use App\Tests\Fixtures\Builder\Builder;
 use App\Tests\Functional\OrganizationManagement\Creation\CreateOrganizationPage;
 use App\Tests\Functional\ProjectManagement\Creation\CreateProjectPage;
 use Psr\Container\ContainerInterface;
@@ -14,8 +17,10 @@ use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class FunctionalTestCase extends WebTestCase
+class FunctionalTestCase extends WebTestCase implements ContainerAwareTestCaseInterface
 {
+    use ContainerAwareTestCaseTrait;
+
     public static KernelBrowser $client;
 
     private const Pages = [
@@ -39,6 +44,7 @@ class FunctionalTestCase extends WebTestCase
         $this->router = $router;
         $this->loadPages();
         Assert::$testCase = $this;
+        Builder::$testCase = $this;
     }
 
     public function get(string $routeName, array $parameters = []): Crawler

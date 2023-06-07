@@ -10,6 +10,7 @@ final class InMemoryProjectRepositoryTest extends AbstractProjectRepositoryTestC
 {
     protected function setUp(): void
     {
+        parent::setUp();
         $this->repository = new InMemoryProjectRepository();
     }
 }

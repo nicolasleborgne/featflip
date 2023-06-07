@@ -2,13 +2,26 @@
 
 use App\Domain\Organization\Organization;
 use App\Domain\Project\Project;
+use App\Tests\Fixtures\Builder\OrganizationBuilder;
 
-function anOrganization(): Organization
+function anOrganization(string $withSlug = null): Organization
 {
-    return new Organization('feat flip', 'feat-flip');
+    return organizationBuilder()
+        ->withName('feat flip')
+        ->withSlug($withSlug ?? 'feat-flip')
+        ->build();
+}
+
+function organizationBuilder(): OrganizationBuilder
+{
+    return new OrganizationBuilder();
 }
 
 function aProject(): Project
 {
-    return new Project('Some project name', 'some-project-name');
+    return new Project(
+        'Some project name',
+        'some-project-name',
+        anOrganization()->id(),
+    );
 }

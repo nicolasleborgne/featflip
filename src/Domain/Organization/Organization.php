@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Organization;
 
-final class Organization
+final class Organization implements \Stringable
 {
     private readonly OrganizationId $id;
     private string $name;
@@ -33,5 +33,10 @@ final class Organization
     public function slug(): string
     {
         return $this->slug;
+    }
+
+    public function __toString(): string
+    {
+        return sprintf('%s{%s}', self::class, $this->id);
     }
 }

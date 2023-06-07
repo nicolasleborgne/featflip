@@ -10,6 +10,7 @@ final class DoctrineProjectRepositoryTest extends AbstractProjectRepositoryTestC
 {
     protected function setUp(): void
     {
+        parent::setUp();
         $this->repository = self::getContainer()->get(DoctrineProjectRepository::class);
     }
 }

@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Symfony\Form\Type;
 
+use App\Domain\Organization\OrganizationId;
 use App\UseCases\CreateProject\CreateProjectRequest;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\DataMapperInterface;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -19,6 +21,7 @@ final class CreateProjectRequestType extends AbstractType implements DataMapperI
     {
         $builder
             ->add('name', TextType::class)
+            ->add('organization_id', HiddenType::class)
             ->add('add', SubmitType::class)
             ->setDataMapper($this)
         ;
@@ -38,9 +41,13 @@ final class CreateProjectRequestType extends AbstractType implements DataMapperI
             return;
         }
 
-        // @codeCoverageIgnoreStart
-        throw new \LogicException('This code should not be reached.'); // Since this is a creation form, we are not expecting to populate form with data
-        // @codeCoverageIgnoreEnd
+        if (!is_array($viewData) || !isset($viewData['organization_id'])) {
+            return;
+        }
+
+        /** @var FormInterface[] $forms */
+        $forms = iterator_to_array($forms);
+        $forms['organization_id']->setData($viewData['organization_id']);
     }
 
     public function mapFormsToData(\Traversable $forms, mixed &$viewData): void
@@ -53,6 +60,7 @@ final class CreateProjectRequestType extends AbstractType implements DataMapperI
         // beware of type inconsistency, see caution below
         $viewData = new CreateProjectRequest(
             $forms['name']->getData(),
+            OrganizationId::fromString($forms['organization_id']->getData()),
         );
     }
 }

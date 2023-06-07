@@ -10,6 +10,7 @@ final class DoctrineOrganizationRepositoryTest extends AbstractOrganizationRepos
 {
     protected function setUp(): void
     {
+        parent::setUp();
         $this->repository = self::getContainer()->get(DoctrineOrganizationRepository::class);
     }
 }

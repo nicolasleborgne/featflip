@@ -6,10 +6,10 @@ namespace App\Tests\Unit\Infrastructure\Symfony\Repository;
 
 use App\Domain\Organization\OrganizationId;
 use App\Domain\Organization\OrganizationRepositoryInterface;
+use App\Tests\Unit\UnitTest;
 use PHPUnit\Framework\Attributes\Test;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-abstract class AbstractOrganizationRepositoryTestCase extends KernelTestCase
+abstract class AbstractOrganizationRepositoryTestCase extends UnitTest
 {
     protected OrganizationRepositoryInterface $repository;
 
