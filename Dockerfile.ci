@@ -1,9 +1,12 @@
-FROM docker:dind
+FROM --platform=$BUILDPLATFORM earthly/dind:alpine-3.18-docker-23.0.6-r4
+ARG PHP_VERSION=82
+# ARG EARTHLY_VERSION=0.7.8
+ARG TARGETARCH
 
 # Install Earthly
-RUN wget https://github.com/earthly/earthly/releases/download/v0.7.0/earthly-linux-amd64 -O /usr/local/bin/earthly && \
-    chmod +x /usr/local/bin/earthly && \
-    /usr/local/bin/earthly bootstrap
+# RUN wget https://github.com/earthly/earthly/releases/download/v${EARTHLY_VERSION}/earthly-linux-${TARGETARCH} -O /usr/local/bin/earthly && \
+#    chmod +x /usr/local/bin/earthly && \
+#    /usr/local/bin/earthly bootstrap
 
 # Install Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
@@ -12,29 +15,29 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 RUN echo "@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories &&\
     apk update &&\
     apk upgrade &&\
-    apk add php81 \
-    php81-ctype \
-    php81-iconv \
-    php81-xml \
-    php81-zip \
-    php81-intl \
-    php81-mbstring \
-    php81-curl \
-    php81-openssl \
-    php81-common \
-    php81-pgsql \
-    php81-pdo \
-    php81-pdo_pgsql \
+    apk add php$PHP_VERSION \
+    php${PHP_VERSION}-ctype \
+    php${PHP_VERSION}-iconv \
+    php${PHP_VERSION}-xml \
+    php${PHP_VERSION}-zip \
+    php${PHP_VERSION}-intl \
+    php${PHP_VERSION}-mbstring \
+    php${PHP_VERSION}-curl \
+    php${PHP_VERSION}-openssl \
+    php${PHP_VERSION}-common \
+    php${PHP_VERSION}-pgsql \
+    php${PHP_VERSION}-pdo \
+    php${PHP_VERSION}-pdo_pgsql \
     postgresql15-client \
-    php81-dev \
-    php81-phar \
-    php81-dom \
-    php81-tokenizer \
-    php81-xmlwriter \
-    php81-simplexml \
-    php81-session \
-    php81-pecl-pcov@testing \
-    php81-pecl-amqp@testing \
+    php${PHP_VERSION}-dev \
+    php${PHP_VERSION}-phar \
+    php${PHP_VERSION}-dom \
+    php${PHP_VERSION}-tokenizer \
+    php${PHP_VERSION}-xmlwriter \
+    php${PHP_VERSION}-simplexml \
+    php${PHP_VERSION}-session \
+    php${PHP_VERSION}-pecl-pcov@testing \
+    php${PHP_VERSION}-pecl-amqp@testing \
     tar \
     make \
     python3 \
