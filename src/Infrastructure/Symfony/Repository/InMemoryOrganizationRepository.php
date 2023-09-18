@@ -10,10 +10,10 @@ final class InMemoryOrganizationRepository implements OrganizationRepositoryInte
 {
     private array $organizations = [];
 
-    public function get($organizationId)
+    public function get($featureId)
     {
         foreach ($this->organizations as $organization) {
-            if ($organization->id() === $organizationId) {
+            if ($organization->id() === $featureId) {
                 return $organization;
             }
         }

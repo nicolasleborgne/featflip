@@ -8,10 +8,12 @@ use Psr\Container\ContainerInterface;
 
 trait ContainerAwareTestCaseTrait
 {
-    private ContainerInterface $container;
-
     public function container(): ContainerInterface
     {
-        return $this->container;
+        if (!method_exists(static::class, 'getContainer')) {
+            throw new \Error('Your test case class should provide a self::getContainer() method for this trait to work.');
+        }
+
+        return self::getContainer();
     }
 }

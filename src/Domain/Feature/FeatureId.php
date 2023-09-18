@@ -2,20 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Project;
+namespace App\Domain\Feature;
 
 use App\Domain\Common\IdGenerator;
 
-final class ProjectId implements \Stringable
+final class FeatureId
 {
-    public static function generate(): ProjectId
+    public static function generate(): FeatureId
     {
         return new self(IdGenerator::generate());
-    }
-
-    public static function fromString(string $value): ProjectId
-    {
-        return new self($value);
     }
 
     public function __construct(

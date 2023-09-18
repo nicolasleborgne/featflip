@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Symfony\ParamConverter;
 
-use App\Domain\Organization\FindOrganizationFromSlug;
+use App\Domain\Project\FindProjectFromSlug;
 use PHPUnit\Framework\Attributes\CodeCoverageIgnore;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterInterface;
@@ -12,12 +12,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 #[CodeCoverageIgnore]
-final class SlugToOrganization implements ParamConverterInterface
+final class SlugToProject implements ParamConverterInterface
 {
-    public const NAME = 'slug_to_organization';
+    public const NAME = 'slug_to_project';
 
     public function __construct(
-        private readonly FindOrganizationFromSlug $query
+        private readonly FindProjectFromSlug $query
     ) {
     }
 
@@ -26,13 +26,13 @@ final class SlugToOrganization implements ParamConverterInterface
         $options = $configuration->getOptions();
         $propertyName = $options['slug'] ?? 'slug';
         $slug = $request->attributes->get($propertyName, null);
-        $organization = $this->query->execute($slug);
+        $project = $this->query->execute($slug);
 
-        if (null === $organization) {
-            throw new NotFoundHttpException('Unable to found organization with slug %s', $slug);
+        if (null === $project) {
+            throw new NotFoundHttpException('Unable to found project with slug %s', $slug);
         }
 
-        $request->attributes->set('organization', $organization);
+        $request->attributes->set('project', $project);
 
         return true;
     }

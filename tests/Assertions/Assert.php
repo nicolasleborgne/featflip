@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Assertions;
 
+use App\Domain\Feature\Feature;
 use App\Domain\Organization\Organization;
 use App\Domain\Project\Project;
 use PHPUnit\Framework\TestCase;
@@ -20,5 +21,10 @@ abstract class Assert
     public static function thatProject(Project $project): AssertProject
     {
         return new AssertProject($project);
+    }
+
+    public static function thatFeature(Feature $feature): AssertFeature
+    {
+        return new AssertFeature($feature);
     }
 }

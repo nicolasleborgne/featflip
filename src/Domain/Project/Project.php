@@ -44,4 +44,9 @@ final class Project
     {
         return $this->organizationId;
     }
+
+    public function __toString(): string
+    {
+        return sprintf('%s{%s}', self::class, $this->id);
+    }
 }

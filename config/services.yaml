@@ -31,16 +31,32 @@ services:
     App\Infrastructure\Symfony\Repository\DoctrineProjectRepository:
         public: true
 
+    App\Domain\Feature\FeatureRepositoryInterface: '@App\Infrastructure\Symfony\Repository\InMemoryFeatureRepository'
+    App\Infrastructure\Symfony\Repository\DoctrineFeatureRepository:
+        public: true
+
     App\Domain\Organization\FindOrganizationFromSlug: '@App\Infrastructure\Symfony\Query\DoctrineFindOrganizationFromSlug'
     App\Infrastructure\Symfony\Query\InMemoryFindOrganizationFromSlug:
         public: true
     App\Infrastructure\Symfony\Query\DoctrineFindOrganizationFromSlug:
         public: true
 
+    App\Domain\Project\FindProjectFromSlug: '@App\Infrastructure\Symfony\Query\DoctrineFindProjectFromSlug'
+    App\Infrastructure\Symfony\Query\InMemoryFindProjectFromSlug:
+        public: true
+    App\Infrastructure\Symfony\Query\DoctrineFindProjectFromSlug:
+        public: true
+
     App\UseCases\CreateOrganization\CreateOrganizationUseCase: ~
 
     App\UseCases\CreateProject\CreateProjectUseCase: ~
 
+    App\UseCases\CreateFeature\CreateFeatureUseCase: ~
+
     App\Infrastructure\Symfony\ParamConverter\SlugToOrganization:
         tags:
             - { name: request.param_converter, converter: 'slug_to_organization' }
+
+    App\Infrastructure\Symfony\ParamConverter\SlugToProject:
+        tags:
+            - { name: request.param_converter, converter: 'slug_to_project' }
