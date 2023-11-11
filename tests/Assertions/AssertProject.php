@@ -36,12 +36,24 @@ final class AssertProject extends Assert
         return $this;
     }
 
-    public function hasOrganization(Organization $organization)
+    public function hasOrganization(Organization $organization): self
     {
         parent::$testCase::assertEquals(
             $organization->id(),
             $this->project->organizationId(),
             sprintf('Failed asserting that project has organization %s.', $organization),
         );
+
+        return $this;
+    }
+
+    public function hasEnvironment(string $withName): self
+    {
+        parent::$testCase::assertTrue(
+            $this->project->hasEnvironment($withName),
+            sprintf('Failed asserting that project has environment name %s.', $withName),
+        );
+
+        return $this;
     }
 }

@@ -23,7 +23,6 @@ final class CreateProjectController extends AbstractController
 {
     public function __construct(
         private readonly CreateProjectUseCase $createProjectUseCase,
-        // private readonly FindOrganizationFromSlug $findOrganization,
     ) {
     }
 

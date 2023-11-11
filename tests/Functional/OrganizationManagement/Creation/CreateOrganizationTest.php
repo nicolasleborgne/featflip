@@ -22,7 +22,7 @@ final class CreateOrganizationTest extends FunctionalTestCase
     }
 
     #[Test]
-    public function can_create_an_organization(): void
+    public function it_create_an_organization(): void
     {
         createOrganizationPage()->submit(withName: 'Featswitches &co');
 

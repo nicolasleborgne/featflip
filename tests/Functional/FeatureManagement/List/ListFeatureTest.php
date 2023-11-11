@@ -11,7 +11,7 @@ use PHPUnit\Framework\Attributes\Test;
 final class ListFeatureTest extends FunctionalTestCase
 {
     #[Test]
-    public function list_features(): void
+    public function it_list_features(): void
     {
         $anOrganization = anOrganization();
         $aProject = aProject(withOrganization: $anOrganization);

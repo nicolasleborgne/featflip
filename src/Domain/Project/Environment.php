@@ -4,30 +4,22 @@ declare(strict_types=1);
 
 namespace App\Domain\Project;
 
-use App\Domain\Organization\OrganizationId;
-
-final class Project
+final class Environment
 {
-    private readonly ProjectId $id;
+    private readonly EnvironmentId $id;
     private string $name;
     private string $slug;
-
-    private OrganizationId $organizationId;
-
-    private $environmentList;
 
     public function __construct(
         string $name,
         string $slug,
-        OrganizationId $organizationId,
     ) {
-        $this->id = ProjectId::generate();
+        $this->id = EnvironmentId::generate();
         $this->name = $name;
         $this->slug = $slug;
-        $this->organizationId = $organizationId;
     }
 
-    public function id(): ProjectId
+    public function id(): EnvironmentId
     {
         return $this->id;
     }
@@ -40,16 +32,6 @@ final class Project
     public function slug(): string
     {
         return $this->slug;
-    }
-
-    public function organizationId(): OrganizationId
-    {
-        return $this->organizationId;
-    }
-
-    public function hasEnvironment(string $name): bool
-    {
-        return true;
     }
 
     public function __toString(): string

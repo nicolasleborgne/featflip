@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Functional\ProjectManagement\Creation;
+namespace App\Tests\Functional\ProjectManagement\CreateProject;
 
 use App\Domain\Project\ProjectRepositoryInterface;
 use App\Tests\Assertions\Assert;
@@ -20,7 +20,7 @@ final class CreateProjectTest extends FunctionalTestCase
     }
 
     #[Test]
-    public function can_create_a_project(): void
+    public function it_create_a_project(): void
     {
         $organization = anOrganization();
 

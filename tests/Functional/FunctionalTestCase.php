@@ -9,7 +9,7 @@ use App\Tests\ContainerAwareTestCaseInterface;
 use App\Tests\ContainerAwareTestCaseTrait;
 use App\Tests\Fixtures\Builder\Builder;
 use App\Tests\Functional\OrganizationManagement\Creation\CreateOrganizationPage;
-use App\Tests\Functional\ProjectManagement\Creation\CreateProjectPage;
+use App\Tests\Functional\ProjectManagement\CreateProject\CreateProjectPage;
 use Psr\Container\ContainerInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;

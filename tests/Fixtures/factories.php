@@ -8,6 +8,7 @@ use App\Tests\Fixtures\Builder\OrganizationBuilder;
 use App\Tests\Fixtures\Builder\ProjectBuilder;
 use App\Tests\Functional\FeatureManagement\Creation\CreateFeaturePage;
 use App\Tests\Functional\FeatureManagement\List\ListFeaturePage;
+use App\Tests\Functional\ProjectManagement\CreateEnvironment\CreateEnvironmentPage;
 
 function anOrganization(string $withSlug = null): Organization
 {
@@ -57,4 +58,9 @@ function createFeaturePage(): CreateFeaturePage
 function listFeaturePage(): ListFeaturePage
 {
     return new ListFeaturePage();
+}
+
+function createEnvironmentPage(): CreateEnvironmentPage
+{
+    return new CreateEnvironmentPage();
 }
