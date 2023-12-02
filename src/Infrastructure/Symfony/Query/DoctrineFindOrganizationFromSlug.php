@@ -8,10 +8,10 @@ use App\Domain\Organization\FindOrganizationFromSlug;
 use App\Domain\Organization\Organization;
 use Doctrine\ORM\EntityManagerInterface;
 
-final class DoctrineFindOrganizationFromSlug implements FindOrganizationFromSlug
+final readonly class DoctrineFindOrganizationFromSlug implements FindOrganizationFromSlug
 {
     public function __construct(
-        private readonly EntityManagerInterface $em,
+        private EntityManagerInterface $em,
     ) {
     }
 

@@ -56,4 +56,29 @@ final class AssertProject extends Assert
 
         return $this;
     }
+
+    public function hasFeature(string $withKey): self
+    {
+        parent::$testCase::assertTrue(
+            $this->project->hasFeature($withKey),
+            sprintf('Failed asserting that project has environment name %s.', $withKey),
+        );
+
+        return $this;
+    }
+
+    public function hasFlag(string $withFeature, string $withEnvironment, bool $withValue): self
+    {
+        parent::$testCase::assertTrue(
+            $this->project->hasFlag($withFeature, $withEnvironment, $withValue),
+            sprintf(
+                'Failed asserting that project has flag with feature %s on environment %s with value %s.',
+                $withFeature,
+                $withEnvironment,
+                $withValue,
+            ),
+        );
+
+        return $this;
+    }
 }

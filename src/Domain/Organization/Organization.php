@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Domain\Organization;
 
-final class Organization implements \Stringable
+use App\Domain\Common\AbstractEntity;
+
+final class Organization extends AbstractEntity
 {
-    private readonly OrganizationId $id;
+    private OrganizationId $id;
     private string $name;
 
     private string $slug;
@@ -20,6 +22,7 @@ final class Organization implements \Stringable
         $this->slug = $slug;
     }
 
+    #[\Override]
     public function id(): OrganizationId
     {
         return $this->id;
@@ -33,10 +36,5 @@ final class Organization implements \Stringable
     public function slug(): string
     {
         return $this->slug;
-    }
-
-    public function __toString(): string
-    {
-        return sprintf('%s{%s}', self::class, $this->id);
     }
 }

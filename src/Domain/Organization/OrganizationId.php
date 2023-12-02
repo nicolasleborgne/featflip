@@ -4,27 +4,8 @@ declare(strict_types=1);
 
 namespace App\Domain\Organization;
 
-use App\Domain\Common\IdGenerator;
+use App\Domain\Common\AbstractId;
 
-final class OrganizationId implements \Stringable
+final class OrganizationId extends AbstractId
 {
-    public static function generate(): OrganizationId
-    {
-        return new self(IdGenerator::generate());
-    }
-
-    public static function fromString(string $value): OrganizationId
-    {
-        return new self($value);
-    }
-
-    public function __construct(
-        private readonly string $value
-    ) {
-    }
-
-    public function __toString(): string
-    {
-        return $this->value;
-    }
 }

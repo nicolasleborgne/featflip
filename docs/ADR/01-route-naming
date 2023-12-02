@@ -15,7 +15,13 @@ Routes should be named as: `{app_name}_{entity_path}_{action}`
 - app_name: featflip
 - entity_path: things such as "organization", "organization_team" or "organization_project"
 - action:
-    - to be filled.
+    - can be a domain action
+    - On crud based action :
+        - list
+        - create
+        - update
+        - delete
+        - show
 
 ## Consequences
 

@@ -8,10 +8,10 @@ use App\Domain\Common\Slug;
 use App\Domain\Organization\Organization;
 use App\Domain\Organization\OrganizationRepositoryInterface;
 
-final class CreateOrganizationUseCase
+final readonly class CreateOrganizationUseCase
 {
     public function __construct(
-        private readonly OrganizationRepositoryInterface $repository,
+        private OrganizationRepositoryInterface $repository,
     ) {
     }
 

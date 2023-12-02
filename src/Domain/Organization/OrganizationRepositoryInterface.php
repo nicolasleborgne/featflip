@@ -7,7 +7,7 @@ namespace App\Domain\Organization;
 use App\Domain\Common\RepositoryInterface;
 
 /**
- *  @implements RepositoryInterface<Organization, OrganizationId>
+ *  @extends RepositoryInterface<Organization, OrganizationId>
  */
 interface OrganizationRepositoryInterface extends RepositoryInterface
 {

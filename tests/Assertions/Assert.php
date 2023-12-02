@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Assertions;
 
-use App\Domain\Feature\Feature;
 use App\Domain\Organization\Organization;
+use App\Domain\Project\Feature;
 use App\Domain\Project\Project;
 use PHPUnit\Framework\TestCase;
 

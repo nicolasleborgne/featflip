@@ -1,0 +1,17 @@
+# Folder tree
+
+## Status
+
+- 20231001: accepted
+
+## Context
+
+The need of consistency and readiness.
+
+## Decision
+
+We name database table as {aggregate or subdomain name}_{name}. e.g: for user settings: user_settings. As is we can avoid conflict: `organisation_environement`, `project_environement`.
+
+## Consequences
+
+N/A

@@ -2,9 +2,12 @@
                   xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-    <entity name="App\Domain\Project\Project" table="project_project" >
-        <id name="id" type="project_id" />
+    <entity name="App\Domain\Project\Environment" table="project_environment" >
+        <id name="id" type="project_environment_id" />
         <field name="name" column="name" type="string" />
         <field name="slug" column="slug" type="string" />
+        <many-to-one field="project" target-entity="Project" inversed-by="environmentList">
+            <join-column name="project_id" referenced-column-name="id" />
+        </many-to-one>
     </entity>
 </doctrine-mapping>

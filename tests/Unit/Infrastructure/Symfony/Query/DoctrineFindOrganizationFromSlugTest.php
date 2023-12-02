@@ -8,6 +8,7 @@ use App\Infrastructure\Symfony\Query\DoctrineFindOrganizationFromSlug;
 
 final class DoctrineFindOrganizationFromSlugTest extends AbstractFindOrganizationFromSlugTestCaseCase
 {
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();

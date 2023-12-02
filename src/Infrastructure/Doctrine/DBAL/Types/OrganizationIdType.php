@@ -14,11 +14,13 @@ final class OrganizationIdType extends GuidType
 {
     public const ORGANIZATION_ID = 'organization_id';
 
+    #[\Override]
     public function getName(): string
     {
         return self::ORGANIZATION_ID;
     }
 
+    #[\Override]
     public function convertToPHPValue($value, AbstractPlatform $platform): OrganizationId
     {
         return new OrganizationId($value);

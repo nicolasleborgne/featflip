@@ -31,6 +31,7 @@ class FunctionalTestCase extends WebTestCase implements ContainerAwareTestCaseIn
     private ContainerInterface $container;
     private UrlGeneratorInterface $router;
 
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();
@@ -47,6 +48,9 @@ class FunctionalTestCase extends WebTestCase implements ContainerAwareTestCaseIn
         Builder::$testCase = $this;
     }
 
+    /**
+     * @param array<string, string> $parameters
+     */
     public function get(string $routeName, array $parameters = []): Crawler
     {
         $url = $this->router->generate($routeName, $parameters);

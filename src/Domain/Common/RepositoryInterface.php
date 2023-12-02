@@ -23,7 +23,7 @@ interface RepositoryInterface
     public function add($object): void;
 
     /**
-     * @return array[T]
+     * @return array<int, T>
      */
     public function all(): array;
 }

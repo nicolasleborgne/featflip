@@ -23,3 +23,7 @@
 /build
 
 /.devbox
+
+###> phpstan/phpstan ###
+phpstan.neon
+###< phpstan/phpstan ###

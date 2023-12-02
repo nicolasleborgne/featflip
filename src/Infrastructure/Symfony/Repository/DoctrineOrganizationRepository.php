@@ -8,10 +8,10 @@ use App\Domain\Organization\Organization;
 use App\Domain\Organization\OrganizationRepositoryInterface;
 use Doctrine\ORM\EntityManagerInterface;
 
-final class DoctrineOrganizationRepository implements OrganizationRepositoryInterface
+final readonly class DoctrineOrganizationRepository implements OrganizationRepositoryInterface
 {
     public function __construct(
-        private readonly EntityManagerInterface $em,
+        private EntityManagerInterface $em,
     ) {
     }
 
@@ -26,6 +26,7 @@ final class DoctrineOrganizationRepository implements OrganizationRepositoryInte
         $this->em->flush();
     }
 
+    /** @return Organization[] */
     public function all(): array
     {
         return $this->em->getRepository(Organization::class)->findAll();

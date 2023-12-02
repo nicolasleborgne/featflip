@@ -31,10 +31,6 @@ services:
     App\Infrastructure\Symfony\Repository\DoctrineProjectRepository:
         public: true
 
-    App\Domain\Feature\FeatureRepositoryInterface: '@App\Infrastructure\Symfony\Repository\InMemoryFeatureRepository'
-    App\Infrastructure\Symfony\Repository\DoctrineFeatureRepository:
-        public: true
-
     App\Domain\Organization\FindOrganizationFromSlug: '@App\Infrastructure\Symfony\Query\DoctrineFindOrganizationFromSlug'
     App\Infrastructure\Symfony\Query\InMemoryFindOrganizationFromSlug:
         public: true
@@ -52,6 +48,10 @@ services:
     App\UseCases\CreateProject\CreateProjectUseCase: ~
 
     App\UseCases\CreateFeature\CreateFeatureUseCase: ~
+
+    App\UseCases\CreateEnvironment\CreateEnvironmentUseCase: ~
+
+    App\UseCases\SetFlag\SetFlagUseCase: ~
 
     App\Infrastructure\Symfony\ParamConverter\SlugToOrganization:
         tags:

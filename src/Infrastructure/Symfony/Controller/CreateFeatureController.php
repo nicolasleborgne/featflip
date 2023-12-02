@@ -9,8 +9,8 @@ use App\Domain\Project\Project;
 use App\Infrastructure\Symfony\Form\Type\CreateFeatureRequestType;
 use App\Infrastructure\Symfony\ParamConverter\SlugToOrganization;
 use App\Infrastructure\Symfony\ParamConverter\SlugToProject;
+use App\UseCases\CreateFeature\CreateFeatureRequest;
 use App\UseCases\CreateFeature\CreateFeatureUseCase;
-use App\UseCases\CreateProject\CreateProjectRequest;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,7 +37,7 @@ final class CreateFeatureController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var CreateProjectRequest $data */
+            /** @var CreateFeatureRequest $data */
             $data = $form->getData();
             $this->createFeatureUseCase->execute($data);
 

@@ -8,6 +8,7 @@ use App\Infrastructure\Symfony\Repository\DoctrineOrganizationRepository;
 
 final class DoctrineOrganizationRepositoryTest extends AbstractOrganizationRepositoryTestCaseCase
 {
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();

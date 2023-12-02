@@ -13,6 +13,7 @@ final class CreateProjectTest extends FunctionalTestCase
 {
     private ProjectRepositoryInterface $repository;
 
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();

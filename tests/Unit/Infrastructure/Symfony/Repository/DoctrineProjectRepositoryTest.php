@@ -8,6 +8,7 @@ use App\Infrastructure\Symfony\Repository\DoctrineProjectRepository;
 
 final class DoctrineProjectRepositoryTest extends AbstractProjectRepositoryTestCaseCase
 {
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();

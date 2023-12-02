@@ -9,8 +9,8 @@ use App\Domain\Project\Project;
 use App\Infrastructure\Symfony\Form\Type\CreateProjectEnvironmentRequestType;
 use App\Infrastructure\Symfony\ParamConverter\SlugToOrganization;
 use App\Infrastructure\Symfony\ParamConverter\SlugToProject;
-use App\UseCases\CreateProject\CreateProjectRequest;
-use App\UseCases\CreateProject\CreateProjectUseCase;
+use App\UseCases\CreateEnvironment\CreateEnvironmentRequest;
+use App\UseCases\CreateEnvironment\CreateEnvironmentUseCase;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,7 +25,7 @@ use Symfony\Component\Routing\Annotation\Route;
 final class CreateProjectEnvironmentController extends AbstractController
 {
     public function __construct(
-        // private readonly CreateProjectEnvironementUseCase $createProjectEnvironmentUseCase,
+        private readonly CreateEnvironmentUseCase $createEnvironmentUseCase,
     ) {
     }
 
@@ -38,9 +38,9 @@ final class CreateProjectEnvironmentController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var CreateProjectRequest $data */
+            /** @var CreateEnvironmentRequest $data */
             $data = $form->getData();
-            // $this->createProjectUseCase->execute($data);
+            $this->createEnvironmentUseCase->execute($data);
 
             return $this->redirectToRoute('app_project_create', [
                 'slug' => $organization->slug(),

@@ -1,0 +1,17 @@
+# Folder tree
+
+## Status
+
+- 20231001: accepted
+
+## Context
+
+The need of consistency and readiness.
+
+## Decision
+
+Templates are located in `templates` folder as advised by the Symfony framework. We name them as {page_name}/{action}.html.twig. Action should match route naming convention if possible.
+
+## Consequences
+
+N/A

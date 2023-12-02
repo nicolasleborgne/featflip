@@ -1,9 +1,9 @@
 {
   "packages": [
-    "php@8.2",
-    "php81Extensions.pcov",
+    "php@8.3",
     "python@3.11.4",
-    "python311Packages.tox@latest"
+    "python311Packages.tox@latest",
+    "php83Extensions.pcov@latest"
   ],
   "shell": {
     "init_hook": [

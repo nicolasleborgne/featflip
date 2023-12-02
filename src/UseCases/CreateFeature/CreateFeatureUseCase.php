@@ -4,21 +4,18 @@ declare(strict_types=1);
 
 namespace App\UseCases\CreateFeature;
 
-use App\Domain\Feature\Feature;
-use App\Domain\Feature\FeatureRepositoryInterface;
+use App\Domain\Project\ProjectRepositoryInterface;
 
-final class CreateFeatureUseCase
+final readonly class CreateFeatureUseCase
 {
     public function __construct(
-        private readonly FeatureRepositoryInterface $repository,
+        private ProjectRepositoryInterface $repository,
     ) {
     }
 
     public function execute(CreateFeatureRequest $request): void
     {
-        $this->repository->add(new Feature(
-            $request->project,
-            $request->key,
-        ));
+        $project = $this->repository->get($request->projectId);
+        $project->addFeature($request->key);
     }
 }

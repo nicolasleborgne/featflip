@@ -8,6 +8,7 @@ use App\Infrastructure\Symfony\Repository\InMemoryProjectRepository;
 
 final class InMemoryProjectRepositoryTest extends AbstractProjectRepositoryTestCaseCase
 {
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();

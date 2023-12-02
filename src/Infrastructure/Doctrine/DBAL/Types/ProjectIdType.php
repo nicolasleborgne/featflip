@@ -14,11 +14,13 @@ final class ProjectIdType extends GuidType
 {
     public const PROJECT_ID = 'project_id';
 
+    #[\Override]
     public function getName(): string
     {
         return self::PROJECT_ID;
     }
 
+    #[\Override]
     public function convertToPHPValue($value, AbstractPlatform $platform): ProjectId
     {
         return new ProjectId($value);

@@ -15,6 +15,7 @@ final class CreateOrganizationTest extends FunctionalTestCase
 {
     private OrganizationRepositoryInterface $repository;
 
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();

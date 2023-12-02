@@ -12,12 +12,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 #[CodeCoverageIgnore]
-final class SlugToOrganization implements ParamConverterInterface
+final readonly class SlugToOrganization implements ParamConverterInterface
 {
     public const NAME = 'slug_to_organization';
 
     public function __construct(
-        private readonly FindOrganizationFromSlug $query
+        private FindOrganizationFromSlug $query
     ) {
     }
 

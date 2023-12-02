@@ -4,27 +4,12 @@ declare(strict_types=1);
 
 namespace App\Domain\Project;
 
-use App\Domain\Common\IdGenerator;
+use App\Domain\Common\AbstractId;
 
-final class ProjectId implements \Stringable
+final class ProjectId extends AbstractId
 {
-    public static function generate(): ProjectId
+    public function equalTo(ProjectId $projectId): bool
     {
-        return new self(IdGenerator::generate());
-    }
-
-    public static function fromString(string $value): ProjectId
-    {
-        return new self($value);
-    }
-
-    public function __construct(
-        private readonly string $value
-    ) {
-    }
-
-    public function __toString(): string
-    {
-        return $this->value;
+        return (string) $projectId === (string) $this;
     }
 }

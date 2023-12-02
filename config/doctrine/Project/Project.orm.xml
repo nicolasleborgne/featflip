@@ -6,5 +6,20 @@
         <id name="id" type="project_id" />
         <field name="name" column="name" type="string" />
         <field name="slug" column="slug" type="string" />
+        <one-to-many field="environmentList" target-entity="Environment" mapped-by="project" cascade="cascade-persist">
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+        </one-to-many>
+        <one-to-many field="featureList" target-entity="Feature" mapped-by="project" cascade="cascade-persist">
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+        </one-to-many>
+        <one-to-many field="flagList" target-entity="Flag" mapped-by="project" cascade="cascade-persist">
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+        </one-to-many>
     </entity>
 </doctrine-mapping>

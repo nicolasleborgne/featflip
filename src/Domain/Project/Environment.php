@@ -4,21 +4,28 @@ declare(strict_types=1);
 
 namespace App\Domain\Project;
 
-final class Environment
+use App\Domain\Common\AbstractEntity;
+
+final class Environment extends AbstractEntity
 {
-    private readonly EnvironmentId $id;
+    private EnvironmentId $id;
     private string $name;
     private string $slug;
+
+    private readonly Project $project;
 
     public function __construct(
         string $name,
         string $slug,
+        Project $project,
     ) {
         $this->id = EnvironmentId::generate();
         $this->name = $name;
         $this->slug = $slug;
+        $this->project = $project;
     }
 
+    #[\Override]
     public function id(): EnvironmentId
     {
         return $this->id;
@@ -34,8 +41,8 @@ final class Environment
         return $this->slug;
     }
 
-    public function __toString(): string
+    public function equalTo(Environment $environment): bool
     {
-        return sprintf('%s{%s}', self::class, $this->id);
+        return $this->id() === $environment->id();
     }
 }

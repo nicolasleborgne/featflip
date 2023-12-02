@@ -12,12 +12,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 #[CodeCoverageIgnore]
-final class SlugToProject implements ParamConverterInterface
+final readonly class SlugToProject implements ParamConverterInterface
 {
     public const NAME = 'slug_to_project';
 
     public function __construct(
-        private readonly FindProjectFromSlug $query
+        private FindProjectFromSlug $query
     ) {
     }
 

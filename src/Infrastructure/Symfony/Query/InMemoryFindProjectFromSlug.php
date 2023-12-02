@@ -8,10 +8,10 @@ use App\Domain\Project\FindProjectFromSlug;
 use App\Domain\Project\Project;
 use App\Domain\Project\ProjectRepositoryInterface;
 
-final class InMemoryFindProjectFromSlug implements FindProjectFromSlug
+final readonly class InMemoryFindProjectFromSlug implements FindProjectFromSlug
 {
     public function __construct(
-        private readonly ProjectRepositoryInterface $repository
+        private ProjectRepositoryInterface $repository
     ) {
     }
 

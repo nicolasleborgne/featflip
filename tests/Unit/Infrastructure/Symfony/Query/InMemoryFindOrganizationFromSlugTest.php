@@ -8,6 +8,7 @@ use App\Infrastructure\Symfony\Query\InMemoryFindOrganizationFromSlug;
 
 final class InMemoryFindOrganizationFromSlugTest extends AbstractFindOrganizationFromSlugTestCaseCase
 {
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();

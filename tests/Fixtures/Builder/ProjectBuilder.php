@@ -15,6 +15,12 @@ final class ProjectBuilder extends Builder
     private ?string $name = null;
     private ?string $slug = null;
 
+    private ?string $environment = null;
+
+    /** @var array<int, string>|null */
+    private ?array $features = null;
+
+    #[\Override]
     public function build(): Project
     {
         $project = new Project(
@@ -23,12 +29,17 @@ final class ProjectBuilder extends Builder
             $this->organizationId ?? anOrganization()->id(),
         );
 
+        $project->addEnvironment($this->environment ?? 'test');
+        foreach ($this->features ?? ['track_parcel'] as $featureKey) {
+            $project->addFeature($featureKey);
+        }
+
         $this->add($project, DoctrineProjectRepository::class, InMemoryProjectRepository::class);
 
         return $project;
     }
 
-    public function withOrganizationId(?OrganizationId $organizationId)
+    public function withOrganizationId(?OrganizationId $organizationId): self
     {
         $this->organizationId = $organizationId;
 
@@ -45,6 +56,20 @@ final class ProjectBuilder extends Builder
     public function withSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function withEnvironment(string $name): self
+    {
+        $this->environment = $name;
+
+        return $this;
+    }
+
+    public function withFeatures(string ...$key): self
+    {
+        $this->features = $key;
 
         return $this;
     }

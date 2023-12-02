@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Functional\FeatureManagement\List;
+namespace App\Tests\Functional\ProjectManagement\ListFeature;
 
 use App\Domain\Organization\Organization;
 use App\Domain\Project\Project;

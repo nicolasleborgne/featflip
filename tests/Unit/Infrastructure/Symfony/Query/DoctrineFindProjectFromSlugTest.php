@@ -8,6 +8,7 @@ use App\Infrastructure\Symfony\Query\DoctrineFindProjectFromSlug;
 
 final class DoctrineFindProjectFromSlugTest extends AbstractFindProjectFromSlugTestCaseCase
 {
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();

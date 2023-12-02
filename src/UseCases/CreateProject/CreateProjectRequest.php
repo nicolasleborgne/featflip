@@ -6,11 +6,11 @@ namespace App\UseCases\CreateProject;
 
 use App\Domain\Organization\OrganizationId;
 
-final class CreateProjectRequest
+final readonly class CreateProjectRequest
 {
     public function __construct(
-        public readonly string $name,
-        public readonly OrganizationId $organizationId,
+        public string $name,
+        public OrganizationId $organizationId,
     ) {
     }
 }

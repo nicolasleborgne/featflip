@@ -13,6 +13,7 @@ final class OrganizationBuilder extends Builder
     private ?string $name = null;
     private ?string $slug = null;
 
+    #[\Override]
     public function build(): Organization
     {
         $organization = new Organization(

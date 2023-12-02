@@ -8,10 +8,10 @@ use App\Domain\Organization\FindOrganizationFromSlug;
 use App\Domain\Organization\Organization;
 use App\Domain\Organization\OrganizationRepositoryInterface;
 
-final class InMemoryFindOrganizationFromSlug implements FindOrganizationFromSlug
+final readonly class InMemoryFindOrganizationFromSlug implements FindOrganizationFromSlug
 {
     public function __construct(
-        private readonly OrganizationRepositoryInterface $repository
+        private OrganizationRepositoryInterface $repository
     ) {
     }
 

@@ -8,6 +8,7 @@ use App\Infrastructure\Symfony\Query\InMemoryFindProjectFromSlug;
 
 final class InMemoryFindProjectFromSlugTest extends AbstractFindProjectFromSlugTestCaseCase
 {
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();

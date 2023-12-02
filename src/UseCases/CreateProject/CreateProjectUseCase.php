@@ -8,10 +8,10 @@ use App\Domain\Common\Slug;
 use App\Domain\Project\Project;
 use App\Domain\Project\ProjectRepositoryInterface;
 
-final class CreateProjectUseCase
+final readonly class CreateProjectUseCase
 {
     public function __construct(
-        private readonly ProjectRepositoryInterface $repository,
+        private ProjectRepositoryInterface $repository,
     ) {
     }
 

@@ -1,22 +1,24 @@
 {
   "lockfile_version": "1",
   "packages": {
-    "php81Extensions.pcov": {
-      "resolved": "github:NixOS/nixpkgs/f80ac848e3d6f0c12c52758c0f25c10c97ca3b62#php81Extensions.pcov",
-      "source": "nixpkg"
-    },
-    "php@8.2": {
-      "last_modified": "2023-09-04T16:24:30Z",
-      "plugin_version": "0.0.2",
-      "resolved": "github:NixOS/nixpkgs/3c15feef7770eb5500a4b8792623e2d6f598c9c1#php",
+    "php83Extensions.pcov@latest": {
+      "last_modified": "2023-11-17T14:14:56Z",
+      "resolved": "github:NixOS/nixpkgs/a71323f68d4377d12c04a5410e214495ec598d4c#php83Extensions.pcov",
       "source": "devbox-search",
-      "version": "8.2.10"
+      "version": "1.0.11"
+    },
+    "php@8.3": {
+      "last_modified": "2023-11-24T00:36:48Z",
+      "plugin_version": "0.0.2",
+      "resolved": "github:NixOS/nixpkgs/8b8c9407844599546393146bfac901290e0ab96b#php83",
+      "source": "devbox-search",
+      "version": "8.3.0"
     },
     "python311Packages.tox@latest": {
-      "last_modified": "2023-09-04T16:24:30Z",
-      "resolved": "github:NixOS/nixpkgs/3c15feef7770eb5500a4b8792623e2d6f598c9c1#python311Packages.tox",
+      "last_modified": "2023-11-19T17:46:56Z",
+      "resolved": "github:NixOS/nixpkgs/0bf3f5cf6a98b5d077cdcdb00a6d4b3d92bc78b5#python311Packages.tox",
       "source": "devbox-search",
-      "version": "4.4.6"
+      "version": "4.11.3"
     },
     "python@3.11.4": {
       "last_modified": "2023-09-04T16:24:30Z",

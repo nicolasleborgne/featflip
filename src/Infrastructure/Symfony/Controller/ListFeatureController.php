@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Symfony\Controller;
 
-use App\Domain\Feature\Feature;
-use App\Domain\Feature\FeatureRepositoryInterface;
 use App\Domain\Organization\Organization;
+use App\Domain\Project\Feature;
 use App\Domain\Project\Project;
 use App\Infrastructure\Symfony\ParamConverter\SlugToOrganization;
 use App\Infrastructure\Symfony\ParamConverter\SlugToProject;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,15 +21,10 @@ use Symfony\Component\Routing\Annotation\Route;
 #[AsController]
 final class ListFeatureController extends AbstractController
 {
-    public function __construct(
-        private readonly FeatureRepositoryInterface $featureRepository,
-    ) {
-    }
-
-    public function __invoke(Request $request, Organization $organization, Project $project): Response
+    public function __invoke(Organization $organization, Project $project): Response
     {
         return $this->render('features/list.html.twig', [
-            'feature_list' => array_map(fn (Feature $f) => ['id' => $f->id(), 'name' => $f->key()], $this->featureRepository->all()),
+            'feature_list' => $project->features()->map(fn (Feature $f) => ['key' => $f->key()])->toArray(),
         ]);
     }
 }

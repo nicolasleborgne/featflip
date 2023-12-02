@@ -7,10 +7,10 @@ namespace App\Tests\PHPUnit\Extension;
 use PHPUnit\Event;
 use Symfony\Component\Process\Process;
 
-final class SetupDatabase implements Event\Application\StartedSubscriber
+final readonly class SetupDatabase implements Event\Application\StartedSubscriber
 {
     public function __construct(
-        private readonly Mode $mode,
+        private Mode $mode,
     ) {
     }
 

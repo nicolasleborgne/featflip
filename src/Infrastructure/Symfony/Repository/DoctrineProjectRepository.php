@@ -8,10 +8,10 @@ use App\Domain\Project\Project;
 use App\Domain\Project\ProjectRepositoryInterface;
 use Doctrine\ORM\EntityManagerInterface;
 
-final class DoctrineProjectRepository implements ProjectRepositoryInterface
+final readonly class DoctrineProjectRepository implements ProjectRepositoryInterface
 {
     public function __construct(
-        private readonly EntityManagerInterface $em,
+        private EntityManagerInterface $em,
     ) {
     }
 
@@ -26,6 +26,7 @@ final class DoctrineProjectRepository implements ProjectRepositoryInterface
         $this->em->flush();
     }
 
+    /** @return Project[] */
     public function all(): array
     {
         return $this->em->getRepository(Project::class)->findAll();

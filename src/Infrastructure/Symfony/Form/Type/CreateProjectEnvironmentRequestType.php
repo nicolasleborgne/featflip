@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Infrastructure\Symfony\Form\Type;
 
 use App\Domain\Project\ProjectId;
-use App\UseCases\CreateProject\CreateProjectEnvironmentRequest;
+use App\UseCases\CreateEnvironment\CreateEnvironmentRequest;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\DataMapperInterface;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -17,6 +17,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class CreateProjectEnvironmentRequestType extends AbstractType implements DataMapperInterface
 {
+    #[\Override]
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -27,6 +28,7 @@ final class CreateProjectEnvironmentRequestType extends AbstractType implements 
         ;
     }
 
+    #[\Override]
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
@@ -63,7 +65,7 @@ final class CreateProjectEnvironmentRequestType extends AbstractType implements 
         // as data is passed by reference, overriding it will change it in
         // the form object as well
         // beware of type inconsistency, see caution below
-        $viewData = new CreateProjectEnvironmentRequest(
+        $viewData = new CreateEnvironmentRequest(
             $forms['name']->getData(),
             ProjectId::fromString($forms['project_id']->getData()),
         );

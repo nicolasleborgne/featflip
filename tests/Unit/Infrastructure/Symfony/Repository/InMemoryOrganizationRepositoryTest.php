@@ -8,6 +8,7 @@ use App\Infrastructure\Symfony\Repository\InMemoryOrganizationRepository;
 
 final class InMemoryOrganizationRepositoryTest extends AbstractOrganizationRepositoryTestCaseCase
 {
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();

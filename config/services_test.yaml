@@ -1,9 +1,5 @@
 services:
 
-  App\Domain\Feature\FeatureRepositoryInterface: '@App\Infrastructure\Symfony\Repository\InMemoryFeatureRepository'
-  App\Infrastructure\Symfony\Repository\InMemoryFeatureRepository:
-    public: true
-
   App\Domain\Organization\OrganizationRepositoryInterface: '@App\Infrastructure\Symfony\Repository\InMemoryOrganizationRepository'
 
   App\Domain\Project\ProjectRepositoryInterface: '@App\Infrastructure\Symfony\Repository\InMemoryProjectRepository'
