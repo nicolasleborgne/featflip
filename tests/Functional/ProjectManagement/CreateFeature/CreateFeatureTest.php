@@ -19,6 +19,7 @@ final class CreateFeatureTest extends FunctionalTestCase
     #[Test]
     public function it_create_feature(): void
     {
+        aUser();
         $organization = anOrganization();
         $project = aProject(withOrganization: $organization);
 
@@ -26,6 +27,23 @@ final class CreateFeatureTest extends FunctionalTestCase
 
         Assert::thatProject($project)
             ->hasFeature(withKey: 'turn_on_feature')
+        ;
+    }
+
+    #[Test]
+    public function create_feature_leads_to_flag_creation(): void
+    {
+        aUser();
+        $organization = anOrganization();
+        $project = aProject(withOrganization: $organization);
+        $project->addEnvironment('test');
+        $project->addEnvironment('staging');
+
+        createFeaturePage()->submit(withOrganization: $organization, withProject: $project, withKey: 'turn_on_feature');
+
+        Assert::thatProject($project)
+            ->hasFlag(withFeature: $project->features()->first()->key(), withEnvironment: 'test', withValue: false)
+            ->hasFlag(withFeature: $project->features()->first()->key(), withEnvironment: 'staging', withValue: false)
         ;
     }
 }

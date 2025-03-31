@@ -1,9 +1,28 @@
 services:
 
   App\Domain\Organization\OrganizationRepositoryInterface: '@App\Infrastructure\Symfony\Repository\InMemoryOrganizationRepository'
+  App\Infrastructure\Symfony\Repository\InMemoryOrganizationRepository:
+    public: true
 
   App\Domain\Project\ProjectRepositoryInterface: '@App\Infrastructure\Symfony\Repository\InMemoryProjectRepository'
+  App\Infrastructure\Symfony\Repository\InMemoryProjectRepository:
+    public: true
+
+  App\Domain\User\UserRepositoryInterface: '@App\Infrastructure\Symfony\Repository\InMemoryUserRepository'
+  App\Infrastructure\Symfony\Repository\InMemoryUserRepository:
+    public: true
 
   App\Domain\Organization\FindOrganizationFromSlug: '@App\Infrastructure\Symfony\Query\InMemoryFindOrganizationFromSlug'
+  App\Infrastructure\Symfony\Query\InMemoryFindOrganizationFromSlug:
+    public: true
+    arguments:
+      $repository: '@App\Infrastructure\Symfony\Repository\InMemoryOrganizationRepository'
 
   App\Domain\Project\FindProjectFromSlug: '@App\Infrastructure\Symfony\Query\InMemoryFindProjectFromSlug'
+  App\Infrastructure\Symfony\Query\InMemoryFindProjectFromSlug:
+    public: true
+    arguments:
+      $repository: '@App\Infrastructure\Symfony\Repository\InMemoryProjectRepository'
+
+  SymfonyCasts\Bundle\ResetPassword\Persistence\ResetPasswordRequestRepositoryInterface: '@App\Infrastructure\Symfony\Repository\InMemoryResetPasswordRequestRepository'
+  App\Infrastructure\Symfony\Repository\InMemoryResetPasswordRequestRepository: ~

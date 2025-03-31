@@ -1,0 +1,5 @@
+<ul>
+    {% for flag in flag_list %}
+        <li id="feature_{{ flag.feature.key }}">{{ flag.feature.key }} - flag.value</li>
+    {% endfor %}
+</ul>

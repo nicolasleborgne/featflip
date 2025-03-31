@@ -16,11 +16,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
+use Symfony\Component\HttpKernel\Attribute\ValueResolver;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route(path: '/organizations/{organization_slug}/projects/{project_slug}/features/create', name: 'app_feature_create')]
-#[ParamConverter('organization', options: ['slug' => 'organization_slug'], converter: SlugToOrganization::NAME)]
-#[ParamConverter('project', options: ['slug' => 'project_slug'], converter: SlugToProject::NAME)]
 #[AsController]
 final class CreateFeatureController extends AbstractController
 {
@@ -29,7 +28,12 @@ final class CreateFeatureController extends AbstractController
     ) {
     }
 
-    public function __invoke(Request $request, Organization $organization, Project $project): Response
+    public function __invoke(
+        Request $request,
+        #[ValueResolver(SlugToOrganization::class)]
+        Organization $organization,
+        #[ValueResolver(SlugToProject::class)]
+        Project $project): Response
     {
         $form = $this->createForm(CreateFeatureRequestType::class, [
             'project_id' => $project->id(),

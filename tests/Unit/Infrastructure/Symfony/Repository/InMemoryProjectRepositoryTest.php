@@ -6,7 +6,7 @@ namespace App\Tests\Unit\Infrastructure\Symfony\Repository;
 
 use App\Infrastructure\Symfony\Repository\InMemoryProjectRepository;
 
-final class InMemoryProjectRepositoryTest extends AbstractProjectRepositoryTestCaseCase
+final class InMemoryProjectRepositoryTest extends AbstractProjectRepositoryTestCase
 {
     #[\Override]
     protected function setUp(): void

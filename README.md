@@ -10,23 +10,95 @@ Feat flip provide a rich experience around feature flagging, il enables you to :
 
 # Getting Started
 
+
+
+Ajout requête pour récupérer les organizations 
+test qui liste les organizations d'un user sur la page d'acceuil
+test qui affiche l'info sur le manque d'organization sur la page d'acceuil 
+
+
+
+
+
+
+
+
+
+
+
+
 For contributing information, see @CONTRIBUTING.md
+
+DESIGN
+
+nav bar sans bordure, avec juste le nom de l'app et l'icone pour le moment
+bouton + pour ajouter un projet dans la card orga
+card très épuré par organisation
+    Avec la liste des projets, avec un picto avec la première lettre du projet
+    Liste seulement 5 projet, puis un "view more" ?
+
 
 TODO
 
-project
+List les flags 
+/organizations/slug/projects/slug/env
+
+GET /organizations/slug/projects/slug/flag_id/toggle pour allumer eteindre un flag
+
+remove env, project, feature, organization
+update env, project, feature, organization
+
+ACL
+
+ajouter des membres à une organization
+supprimer des membres à une organization
+modifier le role d'une personne au sein d'une organization
+
+API REST flags ?? Open flags ?
+
+
+
+  pouvoir marquer un environnement comme protégé
+  organization acl
+    owner
+    member
+    reporter
+
+  project acl
+    owner
+    member
+    reporter
+    guest
+
+  acl projet hérite des acl orga. acl projet surcharge les acl orga
+  
+  ajout service PermissionChecker
+    can
+    guard
+
+    check via mock qu'il est bien appelé dans les différentes fonction.
+    check via unit test qu'il rend bien les bonnes permissions
+
+
+| action                   | owner | member | reporter |
+|--------------------------|-------|--------|----------|
+| list organizations       |   –   |   –    |     –    |
+| edit organization        |   ✓   |   ⨯    |     ⨯    |
+| list projects            |   ✓   |   ✓    |     ✓    |
+| list features            |   ✓   |   ✓    |     ✓    |
+| add environment          |   ✓   |   ⨯    |     ⨯    |
+| add feature              |   ✓   |   ✓    |     ⨯    |
+| edit feature             |   ✓   |   ✓    |     ⨯    |
+| add user to organization |   ✓   |   ⨯    |     ⨯    |
+
+
+un flag c'est une feature + une valeur + contrainte ? + environnement ?
+
   list flags par projet
   list feature toujours utile ou pas ?
   lister les projets par organization
-  migration sf 5.4
 
   gestion des utilisateurs
-    sign in
-    sign out
-    register
-      nom d'utilisateur
-      email
-    reset mot de passe
     récuperation des données personnelles
     suppression du compte
     informations légales
@@ -47,7 +119,7 @@ project
 - gérer des access token
   - indépendant du reste, possède un scope permettant d'en définir la portée en terme de métier et ces authorization
 - gérer les utilisateurs
-- RGPD: si pas de connexion depuis
+- RGPD: si pas de connexion depuis x temps
 - ajouter une organization avec le même nom ? Génère un slug avec un numérique ?
 - ajouter un projet avec le même nom interdit
 - ajouter une feature avec le même nom interdit

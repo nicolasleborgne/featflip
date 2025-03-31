@@ -23,6 +23,7 @@ final class CreateProjectTest extends FunctionalTestCase
     #[Test]
     public function it_create_a_project(): void
     {
+        aUser();
         $organization = anOrganization();
 
         createProjectPage()->submit(withOrganization: $organization, withName: 'Featswitches');

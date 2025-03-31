@@ -1,1 +1,18 @@
-{{ form(form) }}
+{% extends "base.html.twig" %}
+
+{% block title %}Create an organization{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-sm-8 offset-sm-2 col-md-8 offset-md-2 col-lg-4 offset-lg-4">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <div class="card-title">
+                        <h3>Create a new organization</h3>
+                    </div>
+                    {{ form(form) }}
+                </div>
+            </div>
+        </div>
+{% endblock %}

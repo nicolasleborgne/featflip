@@ -1,0 +1,46 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-10 offset-1">
+            <h2 class="h2 mt-5 mb-3">Hi,</h2>
+            <div class="alert alert-info">
+                Your a curently not a stackholder of any organization. You can get invited, or <a href="{{ path('app_organization_create') }}">create one here</a>.
+            </div>
+{#            <div class="card mt-5">#}
+{#                <div class="card-body">#}
+{#                    <div class="d-flex">#}
+{#                        <div class="p-2 w-100">#}
+{#                            <h5 class="card-title">Groupe Idea</h5>#}
+{#                            <h6 class="card-subtitle mb-2 text-muted">3 projects</h6>#}
+{#                        </div>#}
+{#                        <div class="p-2 flex-shrink-1"><button class="btn btn-secondary">{{ ux_icon('plus-lg') }}</button></div>#}
+{#                    </div>#}
+{#                    <ul class="list-group">#}
+{#                        <li class="list-group-item d-flex justify-content-between align-items-start">#}
+{#                            <div class="ms-2 me-auto">#}
+{#                                <div class="fw-bold"><a href="">Le nom du projet</a></div>#}
+{#                                Description du projet#}
+{#                            </div>#}
+{#                        </li>#}
+{#                        <li class="list-group-item d-flex justify-content-between align-items-start">#}
+{#                            <div class="ms-2 me-auto">#}
+{#                                <div class="fw-bold"><a href="">Le nom du projet</a></div>#}
+{#                                Description du projet#}
+{#                            </div>#}
+{#                        </li>#}
+{#                        <li class="list-group-item d-flex justify-content-between align-items-start">#}
+{#                            <div class="ms-2 me-auto">#}
+{#                                <div class="fw-bold"><a href="">Le nom du projet</a></div>#}
+{#                                Description du projet#}
+{#                            </div>#}
+{#                        </li>#}
+{#                    </ul>#}
+{#                </div>#}
+{#            </div>#}
+        </div>
+    </div>
+
+{% endblock %}

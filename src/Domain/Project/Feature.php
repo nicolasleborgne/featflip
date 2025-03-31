@@ -32,10 +32,10 @@ final class Feature extends AbstractEntity
         return $this->key;
     }
 
-    public function project(): Project
-    {
-        return $this->project;
-    }
+    //    public function project(): Project
+    //    {
+    //        return $this->project;
+    //    }
 
     public function equalTo(Feature $feature): bool
     {

@@ -14,10 +14,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
+use Symfony\Component\HttpKernel\Attribute\ValueResolver;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route(path: '/organizations/{slug}/projects/create', name: 'app_project_create')]
-#[ParamConverter('organization', converter: SlugToOrganization::NAME)]
 #[AsController]
 final class CreateProjectController extends AbstractController
 {
@@ -26,7 +26,11 @@ final class CreateProjectController extends AbstractController
     ) {
     }
 
-    public function __invoke(Request $request, Organization $organization): Response
+    public function __invoke(
+        Request $request,
+        #[ValueResolver(SlugToOrganization::class)]
+        Organization $organization
+    ): Response
     {
         $form = $this->createForm(CreateProjectRequestType::class, [
             'organization_id' => $organization->id(),

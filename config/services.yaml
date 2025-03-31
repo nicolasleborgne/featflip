@@ -23,23 +23,25 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    App\Domain\Organization\OrganizationRepositoryInterface: '@App\Infrastructure\Symfony\Repository\InMemoryOrganizationRepository'
+    App\Domain\Organization\OrganizationRepositoryInterface: '@App\Infrastructure\Symfony\Repository\DoctrineOrganizationRepository'
     App\Infrastructure\Symfony\Repository\DoctrineOrganizationRepository:
         public: true
 
-    App\Domain\Project\ProjectRepositoryInterface: '@App\Infrastructure\Symfony\Repository\InMemoryProjectRepository'
+    App\Domain\Project\ProjectRepositoryInterface: '@App\Infrastructure\Symfony\Repository\DoctrineProjectRepository'
     App\Infrastructure\Symfony\Repository\DoctrineProjectRepository:
         public: true
 
-    App\Domain\Organization\FindOrganizationFromSlug: '@App\Infrastructure\Symfony\Query\DoctrineFindOrganizationFromSlug'
-    App\Infrastructure\Symfony\Query\InMemoryFindOrganizationFromSlug:
+    App\Domain\User\UserRepositoryInterface: '@App\Infrastructure\Symfony\Repository\DoctrineUserRepository'
+    App\Infrastructure\Symfony\Repository\DoctrineUserRepository:
         public: true
+
+    App\Domain\Organization\FindOrganizationFromSlug: '@App\Infrastructure\Symfony\Query\InMemoryFindOrganizationFromSlug'
     App\Infrastructure\Symfony\Query\DoctrineFindOrganizationFromSlug:
+        public: true
+    App\Infrastructure\Symfony\Query\InMemoryFindOrganizationFromSlug:
         public: true
 
     App\Domain\Project\FindProjectFromSlug: '@App\Infrastructure\Symfony\Query\DoctrineFindProjectFromSlug'
-    App\Infrastructure\Symfony\Query\InMemoryFindProjectFromSlug:
-        public: true
     App\Infrastructure\Symfony\Query\DoctrineFindProjectFromSlug:
         public: true
 
@@ -60,3 +62,6 @@ services:
     App\Infrastructure\Symfony\ParamConverter\SlugToProject:
         tags:
             - { name: request.param_converter, converter: 'slug_to_project' }
+
+    SymfonyCasts\Bundle\ResetPassword\Persistence\ResetPasswordRequestRepositoryInterface: '@App\Infrastructure\Symfony\Repository\DoctrineResetPasswordRequestRepository'
+    App\Infrastructure\Symfony\Repository\DoctrineResetPasswordRequestRepository: ~

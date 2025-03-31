@@ -1,19 +1,56 @@
-    <!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html data-bs-theme="light">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}featflip{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
-
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
+            <link rel="stylesheet" href="{{ asset('styles/app.scss') }}">
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand nunito-bold text-primary" href="{{ path('app_home') }}">{{ ux_icon('toggle') }} featflip</a>
+                <ul class="navbar-nav">
+                    {% if app.request.get('_route') == 'app_login' %}
+                        <a class="nav-link" href="{{ path('app_register') }}">New to featflip? Create an account</a>
+                    {% endif %}
+                    {% if app.request.get('_route') == 'app_register' %}
+                        <a class="nav-link" href="{{ path('app_login') }}">Already have an account? Sign in</a>
+                    {% endif %}
+                    {%
+                        if
+                        app.request.get('_route') == 'app_verify_email' or
+                        app.request.get('_route') == 'app_forgot_password_request' or
+                        app.request.get('_route') == 'app_check_email' or
+                        app.request.get('_route') == 'app_reset_password'
+
+                    %}
+                        <a class="nav-link" href="{{ path('app_login') }}">Sign in</a>
+                    {% endif %}
+
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-primary" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ ux_icon('user') }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="{{ path('app_logout') }}">Sign out</a></li>
+                        </ul>
+                    </li>
+                    {% endif %}
+
+                </ul>
+            </div>
+        </nav>
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
     </body>
+    {% block javascripts %}
+        {% block importmap %}
+            {{ importmap('app') }}
+        {% endblock %}
+    {% endblock %}
 </html>

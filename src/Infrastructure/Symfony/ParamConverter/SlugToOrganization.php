@@ -5,44 +5,33 @@ declare(strict_types=1);
 namespace App\Infrastructure\Symfony\ParamConverter;
 
 use App\Domain\Organization\FindOrganizationFromSlug;
+use App\Domain\Organization\Organization;
 use PHPUnit\Framework\Attributes\CodeCoverageIgnore;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Controller\ValueResolverInterface;
+use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
 
 #[CodeCoverageIgnore]
-final readonly class SlugToOrganization implements ParamConverterInterface
+final readonly class SlugToOrganization implements ValueResolverInterface
 {
-    public const NAME = 'slug_to_organization';
-
     public function __construct(
-        private FindOrganizationFromSlug $query
+        private FindOrganizationFromSlug $query,
     ) {
     }
 
-    public function apply(Request $request, ParamConverter $configuration)
+    public function resolve(Request $request, ArgumentMetadata $argument): iterable
     {
-        $options = $configuration->getOptions();
-        $propertyName = $options['slug'] ?? 'slug';
-        $slug = $request->attributes->get($propertyName, null);
-        $organization = $this->query->execute($slug);
-
-        if (null === $organization) {
-            throw new NotFoundHttpException('Unable to found organization with slug %s', $slug);
+        $argumentType = $argument->getType();
+        if (
+            !$argumentType instanceof Organization
+        ) {
+            return [];
         }
 
-        $request->attributes->set('organization', $organization);
+        $value = $request->attributes->get($argument->getName());
+        $organization = $this->query->execute($value);
 
-        return true;
-    }
 
-    public function supports(ParamConverter $configuration): bool
-    {
-        if (self::NAME === $configuration->getConverter()) {
-            return true;
-        }
-
-        return false;
+        return [$organization];
     }
 }

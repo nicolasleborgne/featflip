@@ -5,44 +5,34 @@ declare(strict_types=1);
 namespace App\Infrastructure\Symfony\ParamConverter;
 
 use App\Domain\Project\FindProjectFromSlug;
+use App\Domain\Project\Project;
 use PHPUnit\Framework\Attributes\CodeCoverageIgnore;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Controller\ValueResolverInterface;
+use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 #[CodeCoverageIgnore]
-final readonly class SlugToProject implements ParamConverterInterface
+final readonly class SlugToProject implements ValueResolverInterface
 {
-    public const NAME = 'slug_to_project';
-
     public function __construct(
-        private FindProjectFromSlug $query
+        private FindProjectFromSlug $query,
     ) {
     }
 
-    public function apply(Request $request, ParamConverter $configuration)
+    public function resolve(Request $request, ArgumentMetadata $argument): iterable
     {
-        $options = $configuration->getOptions();
-        $propertyName = $options['slug'] ?? 'slug';
-        $slug = $request->attributes->get($propertyName, null);
+        $argumentType = $argument->getType();
+        if (
+            !$argumentType instanceof Project
+        ) {
+            return [];
+        }
+
         $project = $this->query->execute($slug);
 
-        if (null === $project) {
-            throw new NotFoundHttpException('Unable to found project with slug %s', $slug);
-        }
-
-        $request->attributes->set('project', $project);
-
-        return true;
-    }
-
-    public function supports(ParamConverter $configuration): bool
-    {
-        if (self::NAME === $configuration->getConverter()) {
-            return true;
-        }
-
-        return false;
+        return [$project];
     }
 }

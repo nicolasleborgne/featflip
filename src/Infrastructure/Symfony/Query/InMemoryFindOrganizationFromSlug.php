@@ -11,7 +11,7 @@ use App\Domain\Organization\OrganizationRepositoryInterface;
 final readonly class InMemoryFindOrganizationFromSlug implements FindOrganizationFromSlug
 {
     public function __construct(
-        private OrganizationRepositoryInterface $repository
+        private OrganizationRepositoryInterface $repository,
     ) {
     }
 

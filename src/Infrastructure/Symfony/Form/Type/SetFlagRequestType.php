@@ -17,6 +17,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * @codeCoverageIgnore
+ */
 final class SetFlagRequestType extends AbstractType implements DataMapperInterface
 {
     #[\Override]

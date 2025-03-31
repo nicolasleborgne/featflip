@@ -1,0 +1,12 @@
+<doctrine-mapping xmlns="https://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="App\Infrastructure\Symfony\Entity\User" table="user_user" >
+        <id name="id" type="user_id" />
+        <field name="email" column="email" type="string" />
+        <field name="password" column="password" type="string" />
+        <field name="roles" column="roles" type="json" />
+        <field name="isVerified" column="is_verified" type="boolean" />
+    </entity>
+</doctrine-mapping>

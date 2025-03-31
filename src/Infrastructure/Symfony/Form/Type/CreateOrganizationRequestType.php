@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Symfony\Form\Type;
 
+use App\Domain\User\User;
 use App\UseCases\CreateOrganization\CreateOrganizationRequest;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\DataMapperInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -15,6 +17,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class CreateOrganizationRequestType extends AbstractType implements DataMapperInterface
 {
+    public function __construct(
+        private readonly Security $security,
+    ) {
+    }
+
     #[\Override]
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -53,8 +60,11 @@ final class CreateOrganizationRequestType extends AbstractType implements DataMa
         // as data is passed by reference, overriding it will change it in
         // the form object as well
         // beware of type inconsistency, see caution below
+        $user = $this->security->getUser();
+        assert($user instanceof User);
         $viewData = new CreateOrganizationRequest(
             $forms['name']->getData(),
+            $user,
         );
     }
 }

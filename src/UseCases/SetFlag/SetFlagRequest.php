@@ -14,7 +14,7 @@ final readonly class SetFlagRequest
         public ProjectId $projectId,
         public EnvironmentId $environment,
         public FeatureId $feature,
-        public bool $value
+        public bool $value,
     ) {
     }
 }

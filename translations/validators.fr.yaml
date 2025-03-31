@@ -1,1 +1,6 @@
 Error: Erreur
+Please enter your email: Merci de saisir votre email
+Please enter a password: Merci de saisir un mot de passe
+Your password should be at least {{ limit }} characters: Votre mot de passe doit être long d'au moins {{ limit }} caractères
+You should agree to our terms.: Vous devez adherez au conditions d'utilisation.
+There is already an account with this email: Un compte existe déjà avec cet email

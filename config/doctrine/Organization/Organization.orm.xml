@@ -6,5 +6,10 @@
         <id name="id" type="organization_id" />
         <field name="name" column="name" type="string" />
         <field name="slug" column="slug" type="string" />
+        <one-to-many field="userRoleList" target-entity="UserRole" mapped-by="organization">
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+        </one-to-many>
     </entity>
 </doctrine-mapping>

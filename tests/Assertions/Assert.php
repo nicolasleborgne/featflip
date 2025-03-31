@@ -23,8 +23,8 @@ abstract class Assert
         return new AssertProject($project);
     }
 
-    public static function thatFeature(Feature $feature): AssertFeature
-    {
-        return new AssertFeature($feature);
-    }
+    //    public static function thatFeature(Feature $feature): AssertFeature
+    //    {
+    //        return new AssertFeature($feature);
+    //    }
 }

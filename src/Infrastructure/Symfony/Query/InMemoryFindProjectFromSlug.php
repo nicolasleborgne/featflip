@@ -11,7 +11,7 @@ use App\Domain\Project\ProjectRepositoryInterface;
 final readonly class InMemoryFindProjectFromSlug implements FindProjectFromSlug
 {
     public function __construct(
-        private ProjectRepositoryInterface $repository
+        private ProjectRepositoryInterface $repository,
     ) {
     }
 

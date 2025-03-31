@@ -1,10 +1,17 @@
 {
   "packages": [
     "php@8.3",
+    "php83Extensions.pcov@latest",
+    "php83Extensions.xdebug@latest",
+    "php83Extensions.xsl@latest",
     "python@3.11.4",
     "python311Packages.tox@latest",
-    "php83Extensions.pcov@latest"
+    "nodejs@20",
+    "symfony-cli@latest"
   ],
+  "env": {
+    "DEVBOX_COREPACK_ENABLED": "true"
+  },
   "shell": {
     "init_hook": [
       "echo 'Welcome to devbox!' > /dev/null"

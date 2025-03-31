@@ -13,6 +13,7 @@ final class SetFlagTest extends FunctionalTestCase
     #[Test]
     public function it_set_flag_value(): void
     {
+        aUser();
         $anOrganization = anOrganization();
         $aProject = aProject(
             withOrganization: $anOrganization,
@@ -59,6 +60,7 @@ final class SetFlagTest extends FunctionalTestCase
     #[Test]
     public function unset_an_already_set_flag(): void
     {
+        aUser();
         $anOrganization = anOrganization();
         $aProject = aProject(
             withOrganization: $anOrganization,

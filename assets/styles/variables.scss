@@ -1,0 +1,21 @@
+$border-style: none;
+$border-width: 0px;
+$font-family-sans-serif: "nunito-sans-regular", -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$headings-font-family: 'nunito-bold';
+//$primary: #3B3561; /*hsl(216, 98%, 52%)*/
+$secondary: #e9ecef;
+$info: #51A3A3;
+$light: $secondary;
+$input-bg: hsl(from var(--bs-secondary) h s calc(l - 2));
+$input-focus-bg: hsl(from var(--bs-secondary) h s calc(l - 5));
+$input-focus-box-shadow: none;
+$input-btn-focus-box-shadow: none;
+$form-check-input-focus-box-shadow: none;
+$form-label-margin-bottom: .2rem;
+$form-label-font-size: .9rem;
+$form-label-font-weight: 700;
+$btn-font-weight: 700;
+$link-decoration: none;
+$link-color: #3B3561;
+//$body-bg: #f1f6ff;
+//$card-bg: #fff;

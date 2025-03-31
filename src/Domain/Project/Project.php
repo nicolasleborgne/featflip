@@ -140,6 +140,21 @@ final class Project extends AbstractEntity
         return new Flag($environment, $feature, false);
     }
 
+    /**
+     * @return Collection<int, Flag>
+     */
+    public function flags(): Collection
+    {
+        $list = new ArrayCollection();
+        foreach ($this->environmentList as $environment) {
+            foreach ($this->featureList as $feature) {
+                $list->add(new Flag($environment, $feature, false));
+            }
+        }
+
+        return $list;
+    }
+
     public function setFlag(FeatureId $withFeature, EnvironmentId $withEnvironment, bool $withValue): void
     {
         $expr = new Comparison('id.__toString', Comparison::EQ, (string) $withFeature);

@@ -1,0 +1,20 @@
+
+@font-face {
+    font-family: 'nunito-sans-regular';
+    src:
+        url('../fonts/NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'nunito-bold';
+    src:
+        url('../fonts/Nunito-VariableFont_wght.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+.nunito-bold {
+    font-family: "nunito-bold", sans-serif;
+}

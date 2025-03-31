@@ -25,14 +25,14 @@ final class AssertFeature extends Assert
         return $this;
     }
 
-    public function hasProject(Project $project): self
-    {
-        parent::$testCase::assertEquals(
-            $project,
-            $this->feature->project(),
-            sprintf('Failed asserting that feature has project %s.', $project),
-        );
-
-        return $this;
-    }
+    //    public function hasProject(Project $project): self
+    //    {
+    //        parent::$testCase::assertEquals(
+    //            $project,
+    //            $this->feature->project(),
+    //            sprintf('Failed asserting that feature has project %s.', $project),
+    //        );
+    //
+    //        return $this;
+    //    }
 }

@@ -1,0 +1,25 @@
+{% apply inky_to_html|inline_css(source('@sass/email.output.css')) %}
+    <container>
+        <row>
+            <columns>
+                <br>
+                {% if email is defined %}
+                    <img src="{{ email.image('@images/logo.png') }}" alt="featflip logo" style="margin: auto;width: 50%;">
+                {% else %}
+                    <img src="{{ asset('images/logo.png') }}" alt="featflip logo" style="margin: auto;width: 50%;">
+                {% endif %}
+                <br>
+                <div class="card">
+                    <div class="card-body text-left">
+                        <br>
+                        {% block content %}
+                        {% endblock %}
+                        <br>
+                        <p class="text-start">À très vite,</p>
+                        <p class="text-start">L'équipe featflip</p>
+                    </div>
+                </div>
+            </columns>
+        </row>
+    </container>
+{% endapply %}

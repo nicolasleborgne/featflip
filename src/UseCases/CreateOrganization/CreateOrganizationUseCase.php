@@ -21,6 +21,7 @@ final readonly class CreateOrganizationUseCase
         $this->repository->add(new Organization(
             $request->name,
             $slug,
+            $request->owner,
         ));
     }
 }

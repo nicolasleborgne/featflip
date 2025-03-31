@@ -1,0 +1,24 @@
+
+{% apply inky_to_html|inline_css(source('@sass/app.output.css')) %}
+<container>
+    <row class="header">
+        <columns>
+            <spacer size="16"></spacer>
+
+            <h1>Hi! Please confirm your email!</h1>
+
+            <p>
+                Please confirm your email address by clicking the following link: <br><br>
+                <a href="{{ signedUrl|raw }}">Confirm my Email</a>.
+                This link will expire in {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
+            </p>
+
+            <button class="btn btn-primary">Coucou toi</button>
+
+            <p>
+                Cheers!
+            </p>
+        </columns>
+    </row>
+</container>
+{% endapply %}

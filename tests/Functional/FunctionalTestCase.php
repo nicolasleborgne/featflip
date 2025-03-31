@@ -39,6 +39,7 @@ class FunctionalTestCase extends WebTestCase implements ContainerAwareTestCaseIn
         self::ensureKernelShutdown();
         self::$client = self::createClient();
         self::$client->disableReboot();
+        self::$client->followRedirects();
         $this->container = self::getContainer();
         /** @var UrlGeneratorInterface $router */
         $router = $this->container->get(UrlGeneratorInterface::class);
@@ -49,18 +50,24 @@ class FunctionalTestCase extends WebTestCase implements ContainerAwareTestCaseIn
     }
 
     /**
-     * @param array<string, string> $parameters
+     * @param array<string, ?string> $parameters
+     * @param array<string, string>  $queryStrings
      */
-    public function get(string $routeName, array $parameters = []): Crawler
+    public function get(string $routeName, array $parameters = [], array $queryStrings = []): Crawler
     {
         $url = $this->router->generate($routeName, $parameters);
 
-        return self::$client->request(Request::METHOD_GET, $url);
+        return self::$client->request(Request::METHOD_GET, $url, $queryStrings);
     }
 
     public function container(): ContainerInterface
     {
         return $this->container;
+    }
+
+    public static function debugHtml(): void
+    {
+        file_put_contents('test.html', self::$client->getResponse()->getContent());
     }
 
     private function loadPages(): void

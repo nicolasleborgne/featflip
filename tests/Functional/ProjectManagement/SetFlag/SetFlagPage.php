@@ -29,7 +29,7 @@ final class SetFlagPage extends AbstractPageObject
         Project $withProject,
         Feature $withFeature,
         Environment $withEnvironment,
-        bool $withValue
+        bool $withValue,
     ): void {
         $crawler = $this->visit(
             $withOrganization,

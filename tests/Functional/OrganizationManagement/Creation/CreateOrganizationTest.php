@@ -6,6 +6,7 @@ namespace App\Tests\Functional\OrganizationManagement\Creation;
 
 use App\Domain\Organization\Organization;
 use App\Domain\Organization\OrganizationRepositoryInterface;
+use App\Domain\Organization\Role;
 use App\Infrastructure\Symfony\Repository\InMemoryOrganizationRepository;
 use App\Tests\Assertions\Assert;
 use App\Tests\Functional\FunctionalTestCase;
@@ -25,12 +26,15 @@ final class CreateOrganizationTest extends FunctionalTestCase
     #[Test]
     public function it_create_an_organization(): void
     {
+        $user = aUser();
+
         createOrganizationPage()->submit(withName: 'Featswitches &co');
 
         /** @var Organization $organization */
         $organization = $this->repository->all()[0];
         Assert::thatOrganization($organization)
             ->hasName('Featswitches &co')
-            ->hasSlug('featswitches-co');
+            ->hasSlug('featswitches-co')
+            ->hasStakeholder($user, withRole: Role::Owner);
     }
 }

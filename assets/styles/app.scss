@@ -1,0 +1,36 @@
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import "../../node_modules/bootstrap/scss/functions";
+
+@import "variables";
+
+:root, [data-bs-theme="light"] {
+  //--bs-body-color: hsl(from var(--bs-secondary) h s calc(l - 42));
+}
+
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+
+html, body {
+  background-color: hsl(from #3B3561 h s calc(l + 68));
+}
+
+.btn-primary {
+  //color: hsl(from var(--bs-primary) h s calc(l + 30));
+}
+
+
+.btn-primary:hover {
+  //color: hsl(from var(--bs-primary) h s calc(l + 35));
+}
+
+//.btn-secondary {
+//  background-color: hsl(from #3B3561 h s calc(l + 60));
+//  color: hsl(from #3B3561 h s calc(l + 0));
+//}
+//
+//
+//.btn-secondary:hover {
+//  background-color: hsl(from #3B3561 h s calc(l + 55));
+//  color: hsl(from #3B3561 h s calc(l - 5));
+//}
